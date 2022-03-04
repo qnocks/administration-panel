@@ -1,0 +1,22 @@
+.mat-card-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-card {
+  min-height: 16em;
+  min-width: 20em;
+  margin: 2em auto;
+  text-align: center;
+}
+
+#mat-item > * {
+  margin-top: 20em;
+}
+
+mat-form-field {
+  display: block;
+  margin: 10px;
+}
