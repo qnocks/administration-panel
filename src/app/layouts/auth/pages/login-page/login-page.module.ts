@@ -25,4 +25,5 @@ import {RouterModule} from "@angular/router";
     LoginPageComponent
   ]
 })
-export class LoginPageModule { }
+export class LoginPageModule {
+}
