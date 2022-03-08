@@ -21,8 +21,17 @@ export class LoginPageComponent implements OnInit {
     if (this.loginForm.valid) {
       const request = this.loginForm.value;
       console.log(request)
+
       // TODO: call service to login with provided request
     }
+  }
+
+  isUsernameNotValid() {
+    return !this.loginForm.controls['username'].valid;
+  }
+
+  isPasswordNotValid() {
+    return !this.loginForm.controls['password'].valid;
   }
 
   private buildForm() {
