@@ -1,6 +1,6 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {AuthLayoutModule} from "./layouts/auth/pages/auth-layout.module";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthLayoutModule } from "./layouts/auth/pages/auth-layout.module";
 
 const routes: Routes = [
   {

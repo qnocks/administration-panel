@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {LoginRequest} from "../../../../core/interfaces/login-request";
 
 @Component({
   selector: 'psap-login-page',
@@ -19,7 +20,7 @@ export class LoginPageComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      const request = this.loginForm.value;
+      const request: LoginRequest = this.loginForm.value;
 
       // TODO: call service to login with provided request
       console.log(request)
