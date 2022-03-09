@@ -74,7 +74,7 @@
       "@angular/material",
       "lodash"
     ],
-    "import-spacing": false,
+    "import-spacing": true,
     "indent": [
       true,
       "spaces"
@@ -169,8 +169,7 @@
       "check-decl",
       "check-operator",
       "check-separator",
-      "check-type",
-      "check-module"
+      "check-type"
     ],
     "no-access-missing-member": true,
     "templates-use-public": true,
