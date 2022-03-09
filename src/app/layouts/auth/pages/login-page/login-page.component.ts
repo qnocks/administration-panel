@@ -20,9 +20,9 @@ export class LoginPageComponent implements OnInit {
   onSubmit(): void {
     if (this.loginForm.valid) {
       const request = this.loginForm.value;
-      console.log(request)
 
       // TODO: call service to login with provided request
+      console.log(request)
     }
   }
 

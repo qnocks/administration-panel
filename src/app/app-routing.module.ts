@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: (): Promise<AuthLayoutModule> =>
-      import('src/app/layouts/auth/pages/auth-layout.module').then((module) => module.AuthLayoutModule)
+      import('src/app/layouts/auth/pages/auth-layout.module').then((m) => m.AuthLayoutModule)
   },
 ];
 
