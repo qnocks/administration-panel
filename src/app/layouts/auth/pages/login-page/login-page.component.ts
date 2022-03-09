@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginRequest } from '../../../../core/interfaces/login-request';
 
 @Component({
   selector: 'psap-login-page',
@@ -20,22 +19,22 @@ export class LoginPageComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      const request: LoginRequest = this.loginForm.value;
+      const request = this.loginForm.value;
 
       // TODO: call service to login with provided request
       console.log(request);
     }
   }
 
-  isUsernameNotValid() {
+  isUsernameNotValid(): boolean {
     return !this.loginForm.controls['username'].valid;
   }
 
-  isPasswordNotValid() {
+  isPasswordNotValid(): boolean {
     return !this.loginForm.controls['password'].valid;
   }
 
-  private buildForm() {
+  private buildForm(): void {
     this.loginForm = new FormGroup({
       username: new FormControl('', [Validators.required, Validators.minLength(4)]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])

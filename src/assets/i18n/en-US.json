@@ -1,0 +1,8 @@
+{
+  "login.title": "Log in",
+  "login.username": "Username",
+  "login.username.error": "Username should be at least 4 characters",
+  "login.password": "Password",
+  "login.password.error": "Password should be at least 6 characters",
+  "login.btn": "Login"
+}
