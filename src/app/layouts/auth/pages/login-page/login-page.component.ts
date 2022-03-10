@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from '../../../../core/services/login.service';
+import { LoginRequest } from '../../../../core/interfaces/login-request';
 
 @Component({
   selector: 'psap-login-page',
@@ -10,7 +12,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor() {
+  constructor(private loginService: LoginService) {
   }
 
   ngOnInit(): void {
@@ -19,10 +21,11 @@ export class LoginPageComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      const request = this.loginForm.value;
+      const request: LoginRequest = this.loginForm.value;
 
       // TODO: call service to login with provided request
       console.log(request);
+      this.loginService.login(request);
     }
   }
 
