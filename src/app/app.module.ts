@@ -21,7 +21,6 @@ import { TranslateModule } from '@ngx-translate/core';
     HttpClientModule,
     TranslateModule.forRoot()
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

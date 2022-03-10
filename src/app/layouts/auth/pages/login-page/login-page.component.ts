@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginService } from '../../../../core/services/login.service';
-import { LoginRequest } from '../../../../core/interfaces/login-request';
+import { AuthService } from '../../services/auth.service';
+import { LoginRequest } from '../../models/login-request';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TokenStorageService } from '../../services/token-storage.service';
 
 @Component({
   selector: 'psap-login-page',
@@ -11,21 +13,30 @@ import { LoginRequest } from '../../../../core/interfaces/login-request';
 })
 export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
+  redirectUrl: string;
 
-  constructor(private loginService: LoginService) {
+  constructor(
+    private loginService: AuthService,
+    private tokenStorage: TokenStorageService,
+    private router: Router,
+    private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.buildForm();
+    this.setRedirectUrl();
   }
 
   onSubmit(): void {
     if (this.loginForm.valid) {
       const request: LoginRequest = this.loginForm.value;
 
-      // TODO: call service to login with provided request
+      // TODO: delete logging to console when debug login component would be done
       console.log(request);
-      this.loginService.login(request);
+      this.loginService.login(request).subscribe(token => {
+        this.tokenStorage.setToken(token);
+        this.router.navigate([this.redirectUrl], {relativeTo: this.route});
+      });
     }
   }
 
@@ -41,6 +52,12 @@ export class LoginPageComponent implements OnInit {
     this.loginForm = new FormGroup({
       username: new FormControl('', [Validators.required, Validators.minLength(4)]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
+    });
+  }
+
+  private setRedirectUrl(): void {
+    this.route.queryParams.subscribe(params => {
+      this.redirectUrl = params['returnUrl'] || '';
     });
   }
 }
