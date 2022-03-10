@@ -7,12 +7,12 @@ export abstract class BaseApiService {
   }
 
   get<T>(url: string, params?: HttpParams, headers?: HttpHeaders): Observable<T> {
-    return this.httpClient.get<T>(url, {params, headers})
+    return this.httpClient.get<T>(url, { params, headers })
       .pipe(catchError(this.handleError));
   }
 
   post<T>(url: string, body?: any, params?: HttpParams, headers?: HttpHeaders): Observable<T> {
-    return this.httpClient.post<T>(url, body, {params, headers})
+    return this.httpClient.post<T>(url, body, { params, headers })
       .pipe(catchError(this.handleError));
   }
 

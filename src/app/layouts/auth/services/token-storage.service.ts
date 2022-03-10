@@ -7,6 +7,7 @@ import { TokenResponse } from '../models/token-response';
 export class TokenStorageService {
   private usernameKey = 'username';
   private tokenKey = 'token';
+  tokenType: string;
 
   constructor() { }
 
@@ -17,6 +18,7 @@ export class TokenStorageService {
   setToken(tokenResponse: TokenResponse): void {
     window.localStorage.setItem(this.usernameKey, tokenResponse.username);
     window.localStorage.setItem(this.tokenKey, tokenResponse.token);
+    this.tokenType = tokenResponse.type;
   }
 
   getToken(): string {
