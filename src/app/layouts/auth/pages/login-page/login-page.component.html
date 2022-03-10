@@ -7,7 +7,7 @@
           <mat-form-field>
             <input
               matInput name="username"
-              placeholder="{{ 'login.username' | translate }}"
+              placeholder="{{ 'login.username.value' | translate }}"
               formControlName="username"
               required>
             <mat-error *ngIf="isUsernameNotValid()">{{ 'login.username.error' | translate }}</mat-error>
@@ -16,13 +16,13 @@
             <input
               matInput
               type="password"
-              placeholder="{{ 'login.password' | translate }}"
+              placeholder="{{ 'login.password.value' | translate }}"
               formControlName="password"
               required>
             <mat-error *ngIf="isPasswordNotValid()">{{ 'login.password.error' | translate }}</mat-error>
           </mat-form-field>
         </div>
-        <button mat-raised-button type="submit" color="primary">{{ 'login.btn' | translate }}</button>
+        <button mat-raised-button type="submit" color="primary">{{ 'login.button' | translate }}</button>
       </form>
     </mat-card-content>
   </mat-card>
