@@ -1,0 +1,14 @@
+{
+  "login": {
+    "title": "Log in",
+    "username": {
+      "value": "Username",
+      "error": "Username should be at least 4 characters"
+    },
+    "password": {
+      "value": "Password",
+      "error": "Password should be at least 6 characters"
+    },
+    "button": "Login"
+  }
+}

@@ -26,15 +26,15 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
-  isUsernameNotValid() {
+  isUsernameNotValid(): boolean {
     return !this.loginForm.controls['username'].valid;
   }
 
-  isPasswordNotValid() {
+  isPasswordNotValid(): boolean {
     return !this.loginForm.controls['password'].valid;
   }
 
-  private buildForm() {
+  private buildForm(): void {
     this.loginForm = new FormGroup({
       username: new FormControl('', [Validators.required, Validators.minLength(4)]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])

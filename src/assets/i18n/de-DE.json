@@ -1,0 +1,14 @@
+{
+  "login": {
+    "title": "Einloggen",
+    "username": {
+      "value": "Nutzername",
+      "error": "Benutzername sollte mindestens 4 Zeichen lang sein"
+    },
+    "password": {
+      "value": "Passwort",
+      "error": "Das Passwort sollte mindestens 6 Zeichen lang sein"
+    },
+    "button": "Login"
+  }
+}
