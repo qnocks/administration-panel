@@ -35,7 +35,9 @@ export class LoginPageComponent implements OnInit {
       console.log(request);
       this.loginService.login(request).subscribe(token => {
         this.tokenStorage.setToken(token);
-        this.router.navigate([this.redirectUrl], { relativeTo: this.route });
+        this.router.navigate([this.redirectUrl], {
+          relativeTo: this.route
+        });
       });
     }
   }
