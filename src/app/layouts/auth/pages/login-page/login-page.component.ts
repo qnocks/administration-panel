@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { LoginRequest } from '../../models/login-request';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TokenStorageService } from '../../services/token-storage.service';
+import { Routing } from '../../../../core/constants/routing';
 
 @Component({
   selector: 'psap-login-page',
@@ -14,6 +15,7 @@ import { TokenStorageService } from '../../services/token-storage.service';
 export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
   redirectUrl: string;
+  private readonly defaultRedirectUrl: string = 'home';
 
   constructor(
     private loginService: AuthService,
@@ -24,7 +26,7 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
-    this.setRedirectUrl();
+    this.initReturnUrl();
   }
 
   onSubmit(): void {
@@ -35,9 +37,7 @@ export class LoginPageComponent implements OnInit {
       console.log(request);
       this.loginService.login(request).subscribe(token => {
         this.tokenStorage.setToken(token);
-        this.router.navigate([this.redirectUrl], {
-          relativeTo: this.route
-        });
+        this.router.navigate([this.redirectUrl]);
       });
     }
   }
@@ -57,9 +57,9 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
-  private setRedirectUrl(): void {
+  private initReturnUrl(): void {
     this.route.queryParams.subscribe(params => {
-      this.redirectUrl = params['returnUrl'] || '';
+      this.redirectUrl = params[Routing.Params.loginRedirectUrlName] || this.defaultRedirectUrl;
     });
   }
 }

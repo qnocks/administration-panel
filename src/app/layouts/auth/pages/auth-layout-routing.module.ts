@@ -2,6 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AuthLayoutComponent } from './auth-layout.component';
 import { LoginPageModule } from './login-page/login-page.module';
+import { Routing } from '../../../core/constants/routing';
 
 const routes: Routes = [
   {
@@ -10,12 +11,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        // TODO: move login path to constants
-        redirectTo: 'login',
+        redirectTo: Routing.LOGIN.login,
         pathMatch: 'full',
       },
       {
-        path: 'login',
+        path: Routing.LOGIN.login,
         loadChildren: (): Promise<LoginPageModule> =>
           import('src/app/layouts/auth/pages/login-page/login-page.module').then((m) => m.LoginPageModule)
       }

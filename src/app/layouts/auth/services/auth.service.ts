@@ -5,19 +5,15 @@ import { BaseApiService } from '../../../core/services/base-api.service';
 import { TokenResponse } from '../models/token-response';
 import { Endpoints } from '../../../core/constants/endpoints';
 import { Observable } from 'rxjs';
-import { LoginPageModule } from '../pages/login-page/login-page.module';
 
-@Injectable({
-  providedIn: LoginPageModule
-})
+@Injectable()
 export class AuthService extends BaseApiService {
 
-  constructor(
-    protected httpClient: HttpClient) {
+  constructor(protected httpClient: HttpClient) {
     super(httpClient);
   }
 
   login(request: LoginRequest): Observable<TokenResponse> {
-    return super.post<TokenResponse>(Endpoints.login(), request);
+    return super.post<TokenResponse>(Endpoints.LOGIN.login, request);
   }
 }

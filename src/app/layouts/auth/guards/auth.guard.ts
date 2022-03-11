@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { TokenStorageService } from '../services/token-storage.service';
+import { Observable } from 'rxjs';
+import { Routing } from '../../../core/constants/routing';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
     if (this.authStorage.isLoggedIn()) {
       return true;

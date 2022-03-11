@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { catchError, Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 export abstract class BaseApiService {
 
@@ -16,8 +16,9 @@ export abstract class BaseApiService {
       .pipe(catchError(this.handleError));
   }
 
-  handleError(): Observable<any> {
+  handleError(error: unknown) {
     // TODO: Implement actual error handling after login component's logic is done
-    return new Observable();
+    console.log(error);
+    return throwError(() => error);
   }
 }
