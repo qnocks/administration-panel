@@ -1,5 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { LoginRequest } from '../../models/login-request';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TokenStorageService } from '../../services/token-storage.service';
+import { Routing } from '../../../../core/constants/routing';
 
 @Component({
   selector: 'psap-login-page',
@@ -9,20 +14,31 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
+  redirectUrl: string;
+  private readonly defaultRedirectUrl: string = 'home';
 
-  constructor() {
+  constructor(
+    private loginService: AuthService,
+    private tokenStorage: TokenStorageService,
+    private router: Router,
+    private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.buildForm();
+    this.initReturnUrl();
   }
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      const request = this.loginForm.value;
+      const request: LoginRequest = this.loginForm.value;
 
-      // TODO: call service to login with provided request
+      // TODO: delete logging to console when debug login component would be done
       console.log(request);
+      this.loginService.login(request).subscribe(token => {
+        this.tokenStorage.setToken(token);
+        this.router.navigate([this.redirectUrl]);
+      });
     }
   }
 
@@ -38,6 +54,12 @@ export class LoginPageComponent implements OnInit {
     this.loginForm = new FormGroup({
       username: new FormControl('', [Validators.required, Validators.minLength(4)]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
+    });
+  }
+
+  private initReturnUrl(): void {
+    this.route.queryParams.subscribe(params => {
+      this.redirectUrl = params[Routing.Params.loginRedirectUrlName] || this.defaultRedirectUrl;
     });
   }
 }
