@@ -62,4 +62,10 @@ export class LoginPageComponent implements OnInit {
       this.redirectUrl = params[Routing.Params.loginRedirectUrlName] || this.defaultRedirectUrl;
     });
   }
+
+  private initReturnUrl(): void {
+    this.route.queryParams.subscribe(params => {
+      this.redirectUrl = params[Routing.Params.loginRedirectUrlName] || this.defaultRedirectUrl;
+    });
+  }
 }
