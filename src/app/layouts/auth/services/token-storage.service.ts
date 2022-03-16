@@ -8,8 +8,6 @@ import { Constants } from '../../../core/constants/constants';
 export class TokenStorageService {
   tokenType: string;
 
-  constructor() { }
-
   isLoggedIn(): boolean {
     return (window.localStorage.getItem(Constants.TokenStorage.tokenKey) !== null);
   }

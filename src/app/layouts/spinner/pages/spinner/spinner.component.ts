@@ -8,8 +8,7 @@ import { SpinnerService } from '../../services/spinner.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SpinnerComponent implements OnInit {
-
-  showSpinner: boolean = false;
+  showSpinner = false;
 
   constructor(private spinnerService: SpinnerService, private cdRef: ChangeDetectorRef) {
   }

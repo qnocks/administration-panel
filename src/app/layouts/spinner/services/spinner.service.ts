@@ -3,7 +3,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable()
 export class SpinnerService {
-
   private loading = new BehaviorSubject<boolean>(false);
 
   show() {
