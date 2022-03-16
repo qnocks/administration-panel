@@ -8,18 +8,15 @@ import { SpinnerService } from '../../services/spinner.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SpinnerComponent implements OnInit {
-  showSpinner = false;
+  readonly spinnerDiameter = 150;
+  isSpinnerVisible = false;
 
   constructor(private spinnerService: SpinnerService, private cdRef: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
-    this.init();
-  }
-
-  init(): void {
-    this.spinnerService.getLoadingObservable().subscribe(status => {
-      this.showSpinner = status;
+    this.spinnerService.isLoading().subscribe(status => {
+      this.isSpinnerVisible = status;
       this.cdRef.detectChanges();
     });
   }

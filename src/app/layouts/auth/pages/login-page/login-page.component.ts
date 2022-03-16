@@ -15,7 +15,7 @@ import { Routing } from '../../../../core/constants/routing';
 export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
   redirectUrl: string;
-  private readonly defaultRedirectUrl: string = 'home';
+  private readonly defaultRedirectUrl: string = '';
 
   constructor(
     private loginService: AuthService,
@@ -53,13 +53,13 @@ export class LoginPageComponent implements OnInit {
   private buildForm(): void {
     this.loginForm = new FormGroup({
       username: new FormControl('', [Validators.required, Validators.minLength(4)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)])
+      password: new FormControl('', [Validators.required, Validators.minLength(5)])
     });
   }
 
   private initReturnUrl(): void {
     this.route.queryParams.subscribe(params => {
-      this.redirectUrl = params[Routing.Params.loginRedirectUrlName] || this.defaultRedirectUrl;
+      this.redirectUrl = params[Routing.PARAMS.loginRedirectUrlName] || this.defaultRedirectUrl;
     });
   }
 }

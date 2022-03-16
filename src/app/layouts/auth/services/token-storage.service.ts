@@ -9,17 +9,17 @@ export class TokenStorageService {
   tokenType: string;
 
   isLoggedIn(): boolean {
-    return (window.localStorage.getItem(Constants.TokenStorage.tokenKey) !== null);
+    return (window.localStorage.getItem(Constants.TOKEN_STORAGE.tokenKey) !== null);
   }
 
   setToken(tokenResponse: TokenResponse): void {
-    window.localStorage.setItem(Constants.TokenStorage.usernameKey, tokenResponse.username);
-    window.localStorage.setItem(Constants.TokenStorage.tokenKey, tokenResponse.token);
+    window.localStorage.setItem(Constants.TOKEN_STORAGE.usernameKey, tokenResponse.username);
+    window.localStorage.setItem(Constants.TOKEN_STORAGE.tokenKey, tokenResponse.token);
     this.tokenType = tokenResponse.type;
   }
 
   getToken(): string {
-    const token = window.localStorage.getItem(Constants.TokenStorage.usernameKey);
+    const token = window.localStorage.getItem(Constants.TOKEN_STORAGE.usernameKey);
 
     if (token === null) {
       // TODO: implement error handling when logic component would be done
@@ -30,6 +30,6 @@ export class TokenStorageService {
   }
 
   removeToken(): void {
-    window.localStorage.removeItem(Constants.TokenStorage.tokenKey);
+    window.localStorage.removeItem(Constants.TOKEN_STORAGE.tokenKey);
   }
 }

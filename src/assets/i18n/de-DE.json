@@ -7,7 +7,7 @@
     },
     "password": {
       "value": "Passwort",
-      "error": "Das Passwort sollte mindestens 6 Zeichen lang sein"
+      "error": "Das Passwort sollte mindestens 5 Zeichen lang sein"
     },
     "button": "Login"
   }
