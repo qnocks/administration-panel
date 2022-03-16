@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
+import { SpinnerModule } from './layouts/spinner/pages/spinner/spinner.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    TranslateModule.forRoot()
+    TranslateModule.forRoot(),
+    SpinnerModule
   ],
   bootstrap: [AppComponent]
 })
