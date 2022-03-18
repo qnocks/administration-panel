@@ -6,10 +6,11 @@ import { Constants } from '../../../core/constants/constants';
   providedIn: 'root'
 })
 export class TokenStorageService {
+
   tokenType: string;
 
   isLoggedIn(): boolean {
-    return TokenStorageService.getValue(Constants.TOKEN_STORAGE.tokenKey) !== null;
+    return this.getValue(Constants.TOKEN_STORAGE.tokenKey) !== null;
   }
 
   setToken(tokenResponse: TokenResponse): void {
@@ -19,16 +20,17 @@ export class TokenStorageService {
   }
 
   getToken(): string {
-    return  TokenStorageService.getValue(Constants.TOKEN_STORAGE.tokenKey);
+    return  this.getValue(Constants.TOKEN_STORAGE.tokenKey);
   }
 
   removeToken(): void {
     window.localStorage.removeItem(Constants.TOKEN_STORAGE.tokenKey);
   }
 
-  private static getValue(value: string): string {
+  getValue(value: string): string {
     const storedValue = window.localStorage.getItem(value);
 
+    // TODO: implement error handling when logic component would be done
     if (storedValue === null) {
       return '';
     }

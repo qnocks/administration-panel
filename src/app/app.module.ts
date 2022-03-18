@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { SpinnerModule } from './layouts/spinner/pages/spinner/spinner.module';
+import { NotificationModule } from './shared/notification/notification.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SpinnerModule } from './layouts/spinner/pages/spinner/spinner.module';
     ReactiveFormsModule,
     HttpClientModule,
     TranslateModule.forRoot(),
-    SpinnerModule
+    SpinnerModule,
+    NotificationModule
   ],
   bootstrap: [AppComponent]
 })
