@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { finalize, Observable } from 'rxjs';
+import { Observable, tap, timeout } from 'rxjs';
 import { SpinnerService } from '../services/spinner.service';
 
 @Injectable()
@@ -15,11 +15,16 @@ export class SpinnerInterceptor implements HttpInterceptor {
   }
 
   handle(next: HttpHandler, request: HttpRequest<unknown>): Observable<HttpEvent<unknown>> {
-   return next.handle(request)
+    return next.handle(request)
       .pipe(
-        finalize(() => {
+        timeout(10000),
+        tap({
+        next: () => {
           this.spinnerService.hide();
-        })
-      );
+        },
+        error: () => {
+          this.spinnerService.hide();
+        }
+      }));
   }
 }

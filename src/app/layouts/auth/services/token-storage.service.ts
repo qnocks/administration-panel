@@ -9,7 +9,7 @@ export class TokenStorageService {
   tokenType: string;
 
   isLoggedIn(): boolean {
-    return (window.localStorage.getItem(Constants.TOKEN_STORAGE.tokenKey) !== null);
+    return TokenStorageService.getValue(Constants.TOKEN_STORAGE.tokenKey) !== null;
   }
 
   setToken(tokenResponse: TokenResponse): void {
@@ -19,17 +19,20 @@ export class TokenStorageService {
   }
 
   getToken(): string {
-    const token = window.localStorage.getItem(Constants.TOKEN_STORAGE.usernameKey);
-
-    if (token === null) {
-      // TODO: implement error handling when logic component would be done
-      return '';
-    }
-
-    return token;
+    return  TokenStorageService.getValue(Constants.TOKEN_STORAGE.tokenKey);
   }
 
   removeToken(): void {
     window.localStorage.removeItem(Constants.TOKEN_STORAGE.tokenKey);
+  }
+
+  private static getValue(value: string): string {
+    const storedValue = window.localStorage.getItem(value);
+
+    if (storedValue === null) {
+      return '';
+    }
+
+    return storedValue;
   }
 }

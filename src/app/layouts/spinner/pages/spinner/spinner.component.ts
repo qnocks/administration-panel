@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { SpinnerService } from '../../services/spinner.service';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'psap-spinner',
@@ -11,13 +12,16 @@ export class SpinnerComponent implements OnInit {
   readonly spinnerDiameter = 150;
   isSpinnerVisible = false;
 
-  constructor(private spinnerService: SpinnerService, private cdRef: ChangeDetectorRef) {
+  constructor(private spinnerService: SpinnerService, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
-    this.spinnerService.isLoading().subscribe(status => {
-      this.isSpinnerVisible = status;
-      this.cdRef.detectChanges();
-    });
+    this.spinnerService.isLoading()
+      .pipe(tap(() => {
+        this.cdr.detectChanges();
+      }))
+      .subscribe(status => {
+        this.isSpinnerVisible = status;
+      });
   }
 }
