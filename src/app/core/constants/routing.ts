@@ -1,12 +1,12 @@
+class Login {
+  static readonly login = 'login';
+}
+
+class Params {
+  static readonly loginRedirectUrlName = 'returnUrl';
+}
+
 export class Routing {
-
-  private static Login = class {
-    static readonly login = 'login';
-  };
-
-  static readonly LOGIN = Routing.Login;
-
-  static Params = class {
-    static readonly loginRedirectUrlName = 'returnUrl';
-  };
+  static readonly LOGIN = Login;
+  static readonly PARAMS = Params;
 }
