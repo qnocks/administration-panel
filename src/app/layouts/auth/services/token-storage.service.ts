@@ -6,8 +6,9 @@ import { Constants } from '../../../core/constants/constants';
   providedIn: 'root'
 })
 export class TokenStorageService {
-
   tokenType: string;
+
+  constructor() { }
 
   isLoggedIn(): boolean {
     return this.getValue(Constants.TOKEN_STORAGE.tokenKey) !== null;
