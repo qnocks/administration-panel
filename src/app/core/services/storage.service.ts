@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Constants } from '../../../core/constants/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +6,7 @@ import { Constants } from '../../../core/constants/constants';
 export class StorageService {
 
   getValue(key: string): string | null {
-    const value = window.localStorage.getItem(key);
-    return value;
+    return window.localStorage.getItem(key);
   }
 
   setValue(key: string, value: string): void {

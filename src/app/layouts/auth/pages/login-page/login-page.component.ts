@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TokenStorageService } from '../../services/token-storage.service';
 import { Routing } from '../../../../core/constants/routing';
 import { NotifierService } from 'angular-notifier';
+import { Constants } from '../../../../core/constants/constants';
 
 @Component({
   selector: 'psap-login-page',
@@ -41,10 +42,10 @@ export class LoginPageComponent implements OnInit {
         next: (token) => {
           this.tokenStorage.setToken(token);
           this.router.navigate([this.redirectUrl]);
-          this.notifierService.notify('success', 'Login successfully');
+          this.notifierService.notify(Constants.NOTIFIER_KEY.successKey, 'Login successfully');
         },
         error: (err) => {
-          this.notifierService.notify('error', err.message);
+          this.notifierService.notify(Constants.NOTIFIER_KEY.errorKey, err.message);
         }
       });
     }

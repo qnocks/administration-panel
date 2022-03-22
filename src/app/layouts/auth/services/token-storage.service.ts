@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TokenResponse } from '../models/token-response';
 import { Constants } from '../../../core/constants/constants';
-import { StorageService } from './storage.service';
+import { StorageService } from '../../../core/services/storage.service';
 
 @Injectable({
   providedIn: 'root'
