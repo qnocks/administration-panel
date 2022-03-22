@@ -1,7 +1,7 @@
 import { environment } from '../../../environments/environment';
 
 class Login {
-  static readonly login = `${environment.baseApiUrl}/auth/login`;
+  static readonly login = `${environment.baseApiUrl}/auth/`;
 }
 
 export class Endpoints {
