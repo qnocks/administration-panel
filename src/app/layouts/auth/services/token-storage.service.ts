@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TokenResponse } from '../models/token-response';
 import { Constants } from '../../../core/constants/constants';
+import { StorageService } from '../../../core/services/storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,31 +9,24 @@ import { Constants } from '../../../core/constants/constants';
 export class TokenStorageService {
   tokenType: string;
 
+  constructor(private storageService: StorageService) {
+  }
+
   isLoggedIn(): boolean {
-    return TokenStorageService.getValue(Constants.TOKEN_STORAGE.tokenKey) !== null;
+    return this.storageService.getValue(Constants.TOKEN_STORAGE.tokenKey) !== null;
   }
 
   setToken(tokenResponse: TokenResponse): void {
-    window.localStorage.setItem(Constants.TOKEN_STORAGE.usernameKey, tokenResponse.username);
-    window.localStorage.setItem(Constants.TOKEN_STORAGE.tokenKey, tokenResponse.token);
+    this.storageService.setValue(Constants.TOKEN_STORAGE.usernameKey, tokenResponse.username);
+    this.storageService.setValue(Constants.TOKEN_STORAGE.tokenKey, tokenResponse.token);
     this.tokenType = tokenResponse.type;
   }
 
   getToken(): string {
-    return  TokenStorageService.getValue(Constants.TOKEN_STORAGE.tokenKey);
+    return this.storageService.getValue(Constants.TOKEN_STORAGE.tokenKey) || '';
   }
 
   removeToken(): void {
-    window.localStorage.removeItem(Constants.TOKEN_STORAGE.tokenKey);
-  }
-
-  private static getValue(value: string): string {
-    const storedValue = window.localStorage.getItem(value);
-
-    if (storedValue === null) {
-      return '';
-    }
-
-    return storedValue;
+    this.storageService.removeValue(Constants.TOKEN_STORAGE.tokenKey);
   }
 }
