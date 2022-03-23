@@ -42,9 +42,11 @@ export class LoginPageComponent implements OnInit {
         next: (token) => {
           this.tokenStorage.setToken(token);
           this.router.navigate([this.redirectUrl]);
+          // TODO: add translation support
           this.notifierService.notify(Constants.NOTIFIER_KEY.successKey, 'Login successfully');
         },
         error: (err) => {
+          // TODO: add translation support
           this.notifierService.notify(Constants.NOTIFIER_KEY.errorKey, err.message);
         }
       });
