@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { AuthLayoutComponent } from './auth-layout.component';
 import { AuthLayoutRoutingModule } from './auth-layout-routing.module';
 import { AuthService } from '../services/auth.service';
+import { AuthGuard } from '../guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { AuthService } from '../services/auth.service';
     AuthLayoutRoutingModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   exports: [
     AuthLayoutComponent

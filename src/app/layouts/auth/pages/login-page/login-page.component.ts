@@ -2,12 +2,10 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TokenStorageService } from '../../services/token-storage.service';
 import { Routing } from '../../../../core/constants/routing';
 import { NotifierService } from 'angular-notifier';
 import { Constants } from '../../../../core/constants/constants';
 import { TranslateService } from '@ngx-translate/core';
-import { TokenResponse } from '../../models/token-response';
 import { ErrorResponse } from '../../../../core/models/error-response';
 
 @Component({
@@ -23,7 +21,6 @@ export class LoginPageComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private tokenStorage: TokenStorageService,
     private notifierService: NotifierService,
     private router: Router,
     private route: ActivatedRoute,
@@ -39,7 +36,7 @@ export class LoginPageComponent implements OnInit {
   onSubmit(): void {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
-        next: (token) => this.loginSuccessCallback(token),
+        next: () => this.loginSuccessCallback(),
         error: (error) => this.loginFailureCallback(error.error)
       });
     }
@@ -54,7 +51,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   private verifyAuthentication(): void {
-    if (this.tokenStorage.isLoggedIn()) {
+    if (this.authService.isLoggedIn()) {
       this.router.navigate(['']);
     }
   }
@@ -72,8 +69,7 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
-  private loginSuccessCallback(token: TokenResponse): void {
-    this.tokenStorage.setToken(token);
+  private loginSuccessCallback(): void {
     this.router.navigate([this.redirectUrl]);
     this.notifierService.notify(Constants.NOTIFIER_KEY.success, this.translate.instant('notification.login.success'));
   }
