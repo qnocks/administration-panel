@@ -11,10 +11,15 @@
     },
     "button": "Login"
   },
+
   "notification": {
     "login": {
       "success": "Login successfully",
       "failure": "Error occurred. Cannot login"
     }
+  },
+
+  "navbar": {
+    "logout": "Logout"
   }
 }

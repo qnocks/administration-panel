@@ -17,5 +17,9 @@
       "success": "Anmeldung erfolgreich",
       "failure": "Fehler aufgetreten. Kann nicht einloggen"
     }
+  },
+
+  "navbar": {
+    "logout": "Logout"
   }
 }

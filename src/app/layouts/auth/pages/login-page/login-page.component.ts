@@ -36,8 +36,12 @@ export class LoginPageComponent implements OnInit {
   onSubmit(): void {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
-        next: () => this.loginSuccessCallback(),
-        error: (error) => this.loginFailureCallback(error.error)
+        next: () => {
+          this.loginSuccessCallback();
+        },
+        error: (error) => {
+          this.loginFailureCallback(error.error);
+        }
       });
     }
   }
