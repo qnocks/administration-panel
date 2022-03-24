@@ -5,8 +5,8 @@ class TokenStorage {
 }
 
 class NotifierKey {
-  static readonly successKey = 'success';
-  static readonly errorKey = 'error';
+  static readonly success = 'success';
+  static readonly error = 'error';
 }
 
 export class Constants {

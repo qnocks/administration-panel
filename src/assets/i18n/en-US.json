@@ -10,5 +10,11 @@
       "error": "Password should be at least 5 characters"
     },
     "button": "Login"
+  },
+  "notification": {
+    "login": {
+      "success": "Login successfully",
+      "failure": "Error occurred. Cannot login"
+    }
   }
 }

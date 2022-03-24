@@ -1,12 +1,14 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { LoginRequest } from '../../models/login-request';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TokenStorageService } from '../../services/token-storage.service';
 import { Routing } from '../../../../core/constants/routing';
 import { NotifierService } from 'angular-notifier';
 import { Constants } from '../../../../core/constants/constants';
+import { TranslateService } from '@ngx-translate/core';
+import { TokenResponse } from '../../models/token-response';
+import { ErrorResponse } from '../../../../core/models/error-response';
 
 @Component({
   selector: 'psap-login-page',
@@ -24,7 +26,8 @@ export class LoginPageComponent implements OnInit {
     private tokenStorage: TokenStorageService,
     private notifierService: NotifierService,
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private translate: TranslateService) {
   }
 
   ngOnInit(): void {
@@ -35,22 +38,9 @@ export class LoginPageComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      const request: LoginRequest = this.loginForm.value;
-
-      // TODO: delete logging to console when debug login component would be done
-      console.log(request);
-      this.authService.login(request).subscribe({
-        next: (token) => {
-          this.tokenStorage.setToken(token);
-          this.router.navigate([this.redirectUrl]);
-          // TODO: add translation support
-          this.notifierService.notify(Constants.NOTIFIER_KEY.successKey, 'Login successfully');
-        },
-        error: (error) => {
-          // TODO: add translation support
-          console.log(error.message);
-          this.notifierService.notify(Constants.NOTIFIER_KEY.errorKey, error.error.message);
-        }
+      this.authService.login(this.loginForm.value).subscribe({
+        next: (token) => this.loginSuccessCallback(token),
+        error: (error) => this.loginFailureCallback(error.error)
       });
     }
   }
@@ -80,5 +70,15 @@ export class LoginPageComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.redirectUrl = params[Routing.PARAMS.loginRedirectUrlName] || this.defaultRedirectUrl;
     });
+  }
+
+  private loginSuccessCallback(token: TokenResponse): void {
+    this.tokenStorage.setToken(token);
+    this.router.navigate([this.redirectUrl]);
+    this.notifierService.notify(Constants.NOTIFIER_KEY.success, this.translate.instant('notification.login.success'));
+  }
+
+  private loginFailureCallback(error: ErrorResponse): void {
+    this.notifierService.notify(Constants.NOTIFIER_KEY.error, error.message);
   }
 }

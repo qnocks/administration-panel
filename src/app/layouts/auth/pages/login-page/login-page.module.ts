@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { I18nModule } from '../../../../shared/i18n/i18n.module';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,9 @@ import { I18nModule } from '../../../../shared/i18n/i18n.module';
     MatFormFieldModule,
     ReactiveFormsModule,
     I18nModule
+  ],
+  providers: [
+    TranslatePipe
   ],
   exports: [
     LoginPageComponent

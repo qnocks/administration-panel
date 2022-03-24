@@ -13,21 +13,20 @@ export class TokenStorageService {
   }
 
   isLoggedIn(): boolean {
-    return this.storageService.getValue(Constants.TOKEN_STORAGE.accessTokenKey) !== null;
+    return this.storageService.getValue(Constants.TOKEN_STORAGE.usernameKey) !== null;
   }
 
   setToken(tokenResponse: TokenResponse): void {
-    this.storageService.setValue(Constants.TOKEN_STORAGE.usernameKey, tokenResponse.username);
-    this.storageService.setValue(Constants.TOKEN_STORAGE.accessTokenKey, tokenResponse.accessToken);
-    this.storageService.setValue(Constants.TOKEN_STORAGE.refreshTokenKey, tokenResponse.refreshToken);
+    this.storageService.setValue(Constants.TOKEN_STORAGE.usernameKey, JSON.stringify(tokenResponse));
     this.tokenType = tokenResponse.type;
   }
 
   getToken(): string {
-    return this.storageService.getValue(Constants.TOKEN_STORAGE.accessTokenKey) || '';
+    const user = this.storageService.getValue(Constants.TOKEN_STORAGE.usernameKey) || '{}';
+    return JSON.parse(user).accessToken;
   }
 
   removeToken(): void {
-    this.storageService.removeValue(Constants.TOKEN_STORAGE.accessTokenKey);
+    this.storageService.removeValue(Constants.TOKEN_STORAGE.usernameKey);
   }
 }

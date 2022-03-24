@@ -10,5 +10,12 @@
       "error": "Das Passwort sollte mindestens 5 Zeichen lang sein"
     },
     "button": "Login"
+  },
+
+  "notification": {
+    "login": {
+      "success": "Anmeldung erfolgreich",
+      "failure": "Fehler aufgetreten. Kann nicht einloggen"
+    }
   }
 }
