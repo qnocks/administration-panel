@@ -1,5 +1,6 @@
 export interface TokenResponse {
   username: string;
-  token: string;
+  accessToken: string;
   type: string;
+  refreshToken: string;
 }

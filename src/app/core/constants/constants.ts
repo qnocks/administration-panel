@@ -1,6 +1,7 @@
 class TokenStorage {
   static readonly usernameKey = 'username';
-  static readonly tokenKey = 'token';
+  static readonly accessTokenKey = 'accessToken';
+  static readonly refreshTokenKey = 'refreshToken';
 }
 
 class NotifierKey {

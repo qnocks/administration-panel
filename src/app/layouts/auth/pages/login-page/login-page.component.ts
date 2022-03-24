@@ -20,7 +20,7 @@ export class LoginPageComponent implements OnInit {
   private readonly defaultRedirectUrl: string = '';
 
   constructor(
-    private loginService: AuthService,
+    private authService: AuthService,
     private tokenStorage: TokenStorageService,
     private notifierService: NotifierService,
     private router: Router,
@@ -28,6 +28,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.verifyAuthentication();
     this.buildForm();
     this.initReturnUrl();
   }
@@ -38,16 +39,17 @@ export class LoginPageComponent implements OnInit {
 
       // TODO: delete logging to console when debug login component would be done
       console.log(request);
-      this.loginService.login(request).subscribe({
+      this.authService.login(request).subscribe({
         next: (token) => {
           this.tokenStorage.setToken(token);
           this.router.navigate([this.redirectUrl]);
           // TODO: add translation support
           this.notifierService.notify(Constants.NOTIFIER_KEY.successKey, 'Login successfully');
         },
-        error: (err) => {
+        error: (error) => {
           // TODO: add translation support
-          this.notifierService.notify(Constants.NOTIFIER_KEY.errorKey, err.message);
+          console.log(error.message);
+          this.notifierService.notify(Constants.NOTIFIER_KEY.errorKey, error.error.message);
         }
       });
     }
@@ -59,6 +61,12 @@ export class LoginPageComponent implements OnInit {
 
   isPasswordNotValid(): boolean {
     return !this.loginForm.controls['password'].valid;
+  }
+
+  private verifyAuthentication(): void {
+    if (this.tokenStorage.isLoggedIn()) {
+      this.router.navigate(['']);
+    }
   }
 
   private buildForm(): void {

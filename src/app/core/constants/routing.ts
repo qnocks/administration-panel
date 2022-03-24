@@ -1,5 +1,10 @@
-class Login {
-  static readonly login = 'login';
+class Auth {
+  static readonly baseAuth = 'auth';
+  static readonly login = `login`;
+}
+
+class Home {
+  static readonly baseHome = 'home';
 }
 
 class Params {
@@ -7,6 +12,7 @@ class Params {
 }
 
 export class Routing {
-  static readonly LOGIN = Login;
+  static readonly AUTH = Auth;
+  static readonly HOME = Home;
   static readonly PARAMS = Params;
 }
