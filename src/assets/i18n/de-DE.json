@@ -19,6 +19,13 @@
     }
   },
 
+  "exceptions": {
+    "common": {
+      "unauthorized": "Sitzung ist abgelaufen Melden Sie sich bitte neu",
+      "unknown": "Unbekannter Fehler ist aufgetreten"
+    }
+  },
+
   "navbar": {
     "logout": "Logout"
   }

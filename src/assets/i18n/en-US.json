@@ -19,6 +19,13 @@
     }
   },
 
+  "exceptions": {
+    "common": {
+      "unauthorized": "Session has expired. Please login again",
+      "unknown": "Unknown error occurred"
+    }
+  },
+
   "navbar": {
     "logout": "Logout"
   }

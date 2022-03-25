@@ -5,6 +5,7 @@ import { HomePageModule } from './home-page/home-page.module';
 import { AuthGuard } from '../../auth/guards/auth.guard';
 import { AuthLayoutModule } from '../../auth/pages/auth-layout.module';
 import { Routing } from '../../../core/constants/routing';
+import { ErrorLayoutModule } from '../../error/error-layout.module';
 
 const routes: Routes = [
   {
@@ -28,6 +29,11 @@ const routes: Routes = [
     path: Routing.AUTH.baseAuth,
     loadChildren: (): Promise<AuthLayoutModule> =>
       import('src/app/layouts/auth/pages/auth-layout.module').then((m) => m.AuthLayoutModule)
+  },
+  {
+    path: 'error',
+    loadChildren: (): Promise<ErrorLayoutModule> =>
+      import('src/app/layouts/error/error-layout.module').then((m) => m.ErrorLayoutModule)
   }
 ];
 

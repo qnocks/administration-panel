@@ -42,4 +42,9 @@ export class AuthService extends BaseApiService {
         })
       );
   }
+
+  // TODO: Delete it when debug is done
+  test(): Observable<any> {
+    return super.get<any>('http://localhost:8081/auth/test');
+  }
 }

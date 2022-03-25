@@ -9,8 +9,13 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePageComponent {
-    constructor(private authService: AuthService,
+  constructor(private authService: AuthService,
               private router: Router) {
+  }
+
+  // TODO: Delete it when debug is done
+  test(): void {
+    this.authService.test().subscribe(res => console.log(res));
   }
 
   // TODO: move function to header when implementing header
