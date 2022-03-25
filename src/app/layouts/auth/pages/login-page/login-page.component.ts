@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { LoginRequest } from '../../models/login-request';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TokenStorageService } from '../../services/token-storage.service';
 import { Routing } from '../../../../core/constants/routing';
 import { NotifierService } from 'angular-notifier';
 import { Constants } from '../../../../core/constants/constants';
+import { TranslateService } from '@ngx-translate/core';
+import { ErrorResponse } from '../../../../core/models/error-response';
 
 @Component({
   selector: 'psap-login-page',
@@ -20,34 +20,27 @@ export class LoginPageComponent implements OnInit {
   private readonly defaultRedirectUrl: string = '';
 
   constructor(
-    private loginService: AuthService,
-    private tokenStorage: TokenStorageService,
+    private authService: AuthService,
     private notifierService: NotifierService,
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private translate: TranslateService) {
   }
 
   ngOnInit(): void {
+    this.verifyAuthentication();
     this.buildForm();
     this.initReturnUrl();
   }
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      const request: LoginRequest = this.loginForm.value;
-
-      // TODO: delete logging to console when debug login component would be done
-      console.log(request);
-      this.loginService.login(request).subscribe({
-        next: (token) => {
-          this.tokenStorage.setToken(token);
-          this.router.navigate([this.redirectUrl]);
-          // TODO: add translation support
-          this.notifierService.notify(Constants.NOTIFIER_KEY.successKey, 'Login successfully');
+      this.authService.login(this.loginForm.value).subscribe({
+        next: () => {
+          this.onSuccessLogin();
         },
-        error: (err) => {
-          // TODO: add translation support
-          this.notifierService.notify(Constants.NOTIFIER_KEY.errorKey, err.message);
+        error: (error) => {
+          this.onFailureLogin(error.error);
         }
       });
     }
@@ -61,6 +54,12 @@ export class LoginPageComponent implements OnInit {
     return !this.loginForm.controls['password'].valid;
   }
 
+  private verifyAuthentication(): void {
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['']);
+    }
+  }
+
   private buildForm(): void {
     this.loginForm = new FormGroup({
       username: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -70,7 +69,16 @@ export class LoginPageComponent implements OnInit {
 
   private initReturnUrl(): void {
     this.route.queryParams.subscribe(params => {
-      this.redirectUrl = params[Routing.PARAMS.loginRedirectUrlName] || this.defaultRedirectUrl;
+      this.redirectUrl = params[Routing.PARAMS.LOGIN_REDIRECT_URL_NAME] || this.defaultRedirectUrl;
     });
+  }
+
+  private onSuccessLogin(): void {
+    this.router.navigate([this.redirectUrl]);
+    this.notifierService.notify(Constants.NOTIFIER_KEY.SUCCESS, this.translate.instant('notification.login.success'));
+  }
+
+  private onFailureLogin(error: ErrorResponse): void {
+    this.notifierService.notify(Constants.NOTIFIER_KEY.ERROR, error.message);
   }
 }

@@ -1,12 +1,18 @@
-class Login {
-  static readonly login = 'login';
+class Auth {
+  static readonly BASE = 'auth';
+  static readonly LOGIN = `login`;
+}
+
+class Home {
+  static readonly BASE = 'home';
 }
 
 class Params {
-  static readonly loginRedirectUrlName = 'returnUrl';
+  static readonly LOGIN_REDIRECT_URL_NAME = 'returnUrl';
 }
 
 export class Routing {
-  static readonly LOGIN = Login;
+  static readonly AUTH = Auth;
+  static readonly HOME = Home;
   static readonly PARAMS = Params;
 }

@@ -1,11 +1,10 @@
 class TokenStorage {
-  static readonly usernameKey = 'username';
-  static readonly tokenKey = 'token';
+  static readonly USER_KEY = 'username';
 }
 
 class NotifierKey {
-  static readonly successKey = 'success';
-  static readonly errorKey = 'error';
+  static readonly SUCCESS = 'success';
+  static readonly ERROR = 'error';
 }
 
 export class Constants {
