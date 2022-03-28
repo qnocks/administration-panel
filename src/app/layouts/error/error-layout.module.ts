@@ -5,6 +5,7 @@ import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { ErrorLayoutRoutingModule } from './error-layout-routing.module';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { I18nModule } from '../../shared/i18n/i18n.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
     ErrorLayoutRoutingModule,
     AuthLayoutModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    I18nModule
   ],
   exports: [
     ErrorPageComponent

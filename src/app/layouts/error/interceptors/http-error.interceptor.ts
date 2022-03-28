@@ -55,8 +55,10 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   }
 
   private handleUnauthorizedStatus(): void {
+    console.log('IN handleUnauthorizedStatus');
     this.authService.logout().subscribe({
       next: () => {
+        console.log('IN handleUnauthorizedStatus next');
         // TODO: string to constants
         this.router.navigate(['auth/login']);
         this.notifierService.notify(Constants.NOTIFIER_KEY.error,

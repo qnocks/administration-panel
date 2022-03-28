@@ -9,9 +9,10 @@
         </div>
       </mat-card-subtitle>
       <mat-card-content>
-        <h4>{{ errorMessage }}</h4>
+        <h4 *ngIf="isNotFound()">{{ 'exceptions.common.forbidden' | translate }}</h4>
+        <h4 *ngIf="isForbidden()">{{ 'exceptions.common.not_found' | translate }}</h4>
 <!--        TODO: string to constants -->
-        <button [routerLink]="'/home'" mat-raised-button type="submit" color="primary">Homepage</button>
+        <button [routerLink]="'/home'" mat-raised-button type="submit" color="primary">Back to homepage</button>
       </mat-card-content>
     </div>
   </mat-card>
