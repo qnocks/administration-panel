@@ -14,11 +14,6 @@ export class HomePageComponent {
               private router: Router) {
   }
 
-  // TODO: Delete it when debug is done
-  test(): void {
-    this.authService.test().subscribe(res => console.log(res));
-  }
-
   // TODO: move function to header when implementing header
   logout(): void {
     this.authService.logout().subscribe({
