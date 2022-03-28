@@ -24,9 +24,6 @@ export class HomePageComponent {
     this.authService.logout().subscribe({
       next: () => {
         this.router.navigate([Routing.AUTH.ABSOLUTE_LOGIN]);
-      },
-      error: (error) => {
-        console.log(error);
       }
     });
   }

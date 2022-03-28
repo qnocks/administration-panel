@@ -6,7 +6,6 @@ import { Routing } from '../../../../core/constants/routing';
 import { NotifierService } from 'angular-notifier';
 import { Constants } from '../../../../core/constants/constants';
 import { TranslateService } from '@ngx-translate/core';
-import { ErrorResponse } from '../../../../core/models/error-response';
 
 @Component({
   selector: 'psap-login-page',
@@ -24,7 +23,7 @@ export class LoginPageComponent implements OnInit {
     private notifierService: NotifierService,
     private router: Router,
     private route: ActivatedRoute,
-    private translate: TranslateService) {
+    private translateService: TranslateService) {
   }
 
   ngOnInit(): void {
@@ -38,9 +37,6 @@ export class LoginPageComponent implements OnInit {
       this.authService.login(this.loginForm.value).subscribe({
         next: () => {
           this.onSuccessLogin();
-        },
-        error: (error) => {
-          this.onFailureLogin(error.error);
         }
       });
     }
@@ -75,10 +71,6 @@ export class LoginPageComponent implements OnInit {
 
   private onSuccessLogin(): void {
     this.router.navigate([this.redirectUrl]);
-    this.notifierService.notify(Constants.NOTIFIER_KEY.SUCCESS, this.translate.instant('notification.login.success'));
-  }
-
-  private onFailureLogin(error: ErrorResponse): void {
-    this.notifierService.notify(Constants.NOTIFIER_KEY.ERROR, error.message);
+    this.notifierService.notify(Constants.NOTIFIER_KEY.SUCCESS, this.translateService.instant('notification.login.success'));
   }
 }

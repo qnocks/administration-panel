@@ -1,11 +1,11 @@
-<div class="card-wrapper">
+<div class="card__wrapper">
   <mat-card>
-    <div class="card-inner">
+    <div>
       <mat-card-title>{{ 'error.page.title' | translate }}</mat-card-title>
       <mat-card-subtitle>
-        <div class="card-subtitle">
-          <span class="card-subtitle-code">{{ statusCode }}</span>&nbsp;
-          <span class="card-subtitle-text">{{ 'error.page.subtitle' | translate }}</span>
+        <div class="card__subtitle">
+          <span class="card__subtitle-content-status-code">{{ statusCode }}</span>&nbsp;
+          <span>{{ 'error.page.subtitle' | translate }}</span>
         </div>
       </mat-card-subtitle>
       <mat-card-content>

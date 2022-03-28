@@ -22,33 +22,35 @@ export class HttpErrorInterceptor implements HttpInterceptor {
       .pipe(
         tap({
           error: (error: any) => {
-            console.log('ERROR Intercept');
-            console.log(error);
             if (error instanceof HttpErrorResponse) {
-              switch (error.status) {
-                case HttpStatusCode.BadRequest:
-                  this.handleBadRequestStatus(error);
-                  break;
-                case HttpStatusCode.Unauthorized:
-                  this.handleUnauthorizedStatus();
-                  break;
-                case HttpStatusCode.Forbidden:
-                  this.handleForbiddenStatus(error);
-                  break;
-                case HttpStatusCode.NotFound:
-                  this.handleNotFoundStatus(error);
-                  break;
-                case HttpStatusCode.InternalServerError:
-                  this.handleInternalServerError();
-                  break;
-                default:
-                  this.handleUnknownError();
-                  break;
-              }
+              this.handle(error);
             }
           }
         })
       );
+  }
+
+  private handle(error: HttpErrorResponse) {
+    switch (error.status) {
+      case HttpStatusCode.BadRequest:
+        this.handleBadRequestStatus(error);
+        break;
+      case HttpStatusCode.Unauthorized:
+        this.handleUnauthorizedStatus();
+        break;
+      case HttpStatusCode.Forbidden:
+        this.redirectToErrorPage(error.status);
+        break;
+      case HttpStatusCode.NotFound:
+        this.redirectToErrorPage(error.status);
+        break;
+      case HttpStatusCode.InternalServerError:
+        this.handleInternalServerError();
+        break;
+      default:
+        this.handleUnknownError();
+        break;
+    }
   }
 
   private handleBadRequestStatus(error: HttpErrorResponse): void {
@@ -56,10 +58,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   }
 
   private handleUnauthorizedStatus(): void {
-    console.log('IN handleUnauthorizedStatus');
     this.authService.logout().subscribe({
       next: () => {
-        console.log('IN handleUnauthorizedStatus next');
         this.router.navigate([Routing.AUTH.ABSOLUTE_LOGIN]);
         this.notifierService.notify(Constants.NOTIFIER_KEY.ERROR,
           this.translateService.instant('error.http.unauthorized'));
@@ -67,12 +67,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     });
   }
 
-  private handleForbiddenStatus(error: HttpErrorResponse): void {
-    this.router.navigate(['error', { statusCode: error.status }]);
-  }
-
-  private handleNotFoundStatus(error: HttpErrorResponse): void {
-    this.router.navigate(['error', { statusCode: error.status }]);
+  private redirectToErrorPage(statusCode: number): void {
+    this.router.navigate(['error', { statusCode: statusCode }]);
   }
 
   private handleInternalServerError(): void {

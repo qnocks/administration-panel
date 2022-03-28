@@ -1,9 +1,9 @@
-<div class="card-wrapper">
+<div class="card__wrapper">
   <mat-card>
     <mat-card-content>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <h2>{{ 'login.title' | translate }}</h2>
-        <div class="mat-item">
+        <div>
           <mat-form-field>
             <input
               matInput name="username"
