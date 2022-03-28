@@ -36,7 +36,10 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                   break;
                 case HttpStatusCode.NotFound:
                   this.handleNotFoundStatus(error);
-                  break
+                  break;
+                case HttpStatusCode.InternalServerError:
+                  this.handleInternalServerError();
+                  break;
                 default:
                   this.handleUnknownError();
                   break;
@@ -63,14 +66,20 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   }
 
   private handleForbiddenStatus(error: HttpErrorResponse): void {
-    this.router.navigate(['error', { statusCode: error.status }]);
+    this.router.navigate(['error', { statusCode: error.status }], { queryParamsHandling: 'preserve' });
   }
 
   private handleNotFoundStatus(error: HttpErrorResponse): void {
-    this.router.navigate(['error', { statusCode: error.status }]);
+    this.router.navigate(['error', { statusCode: error.status }], { queryParamsHandling: 'preserve' });
+  }
+
+  private handleInternalServerError() {
+    this.notifierService.notify(Constants.NOTIFIER_KEY.error,
+      this.translateService.instant('exceptions.common.server_error'));
   }
 
   private handleUnknownError(): void {
-    this.notifierService.notify(Constants.NOTIFIER_KEY.error, this.translateService.instant('exceptions.common.unknown'));
+    this.notifierService.notify(Constants.NOTIFIER_KEY.error,
+      this.translateService.instant('exceptions.common.unknown'));
   }
 }

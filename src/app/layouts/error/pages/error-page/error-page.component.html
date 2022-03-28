@@ -1,3 +1,18 @@
-<!--TODO: implement this page in next commit -->
-<p>error-page works!</p>
-<div>{{statusCode}}</div>
+<div class="card-wrapper">
+  <mat-card>
+    <div class="card-inner">
+      <mat-card-title>Oops!</mat-card-title>
+      <mat-card-subtitle>
+        <div class="card-subtitle">
+          <span class="card-subtitle-code">{{ statusCode }}</span>&nbsp;
+          <span class="card-subtitle-text">Error occurred</span>
+        </div>
+      </mat-card-subtitle>
+      <mat-card-content>
+        <h4>{{ errorMessage }}</h4>
+<!--        TODO: string to constants -->
+        <button [routerLink]="'/home'" mat-raised-button type="submit" color="primary">Homepage</button>
+      </mat-card-content>
+    </div>
+  </mat-card>
+</div>

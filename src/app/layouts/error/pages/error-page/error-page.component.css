@@ -1,0 +1,27 @@
+.card-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-card {
+  min-height: 12em;
+  min-width: 40em;
+  text-align: center;
+}
+
+mat-card-title {
+  margin: 0.6em auto;
+  font-size: 6em;
+  color: #673AB7;
+}
+
+.card-subtitle {
+  margin: 0.5em 0.2em;
+  font-size: 1.4em;
+}
+
+.card-subtitle-code {
+  font-weight: bold;
+}
