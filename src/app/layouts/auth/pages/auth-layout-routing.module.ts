@@ -1,8 +1,8 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { Routing } from '../../../core/constants/routing';
 import { AuthLayoutComponent } from './auth-layout.component';
 import { LoginPageModule } from './login-page/login-page.module';
+import { Routing } from '../../../core/constants/routing';
 
 const routes: Routes = [
   {
@@ -11,11 +11,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: Routing.AUTH.login,
+        redirectTo: Routing.AUTH.LOGIN,
         pathMatch: 'full',
       },
       {
-        path: Routing.AUTH.login,
+        path: Routing.AUTH.LOGIN,
         loadChildren: (): Promise<LoginPageModule> =>
           import('src/app/layouts/auth/pages/login-page/login-page.module').then((m) => m.LoginPageModule)
       }

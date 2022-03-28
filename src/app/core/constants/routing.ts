@@ -1,14 +1,14 @@
 class Auth {
-  static readonly baseAuth = 'auth';
-  static readonly login = `login`;
+  static readonly BASE = 'auth';
+  static readonly LOGIN = `login`;
 }
 
 class Home {
-  static readonly baseHome = 'home';
+  static readonly BASE = 'home';
 }
 
 class Params {
-  static readonly loginRedirectUrlName = 'returnUrl';
+  static readonly LOGIN_REDIRECT_URL_NAME = 'returnUrl';
 }
 
 export class Routing {

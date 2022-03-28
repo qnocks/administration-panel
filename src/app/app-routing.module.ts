@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeLayoutModule } from './layouts/home/pages/home-layout.module';
+import { BaseLayoutModule } from './layouts/base/pages/base-layout.module';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: (): Promise<HomeLayoutModule> =>
-      import('src/app/layouts/home/pages/home-layout.module').then((m) => m.HomeLayoutModule)
+    loadChildren: (): Promise<BaseLayoutModule> =>
+      import('src/app/layouts/base/pages/base-layout.module').then((m) => m.BaseLayoutModule)
   }
 ];
 

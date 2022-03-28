@@ -37,10 +37,10 @@ export class LoginPageComponent implements OnInit {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: () => {
-          this.loginSuccessCallback();
+          this.onSuccessLogin();
         },
         error: (error) => {
-          this.loginFailureCallback(error.error);
+          this.onFailureLogin(error.error);
         }
       });
     }
@@ -69,16 +69,16 @@ export class LoginPageComponent implements OnInit {
 
   private initReturnUrl(): void {
     this.route.queryParams.subscribe(params => {
-      this.redirectUrl = params[Routing.PARAMS.loginRedirectUrlName] || this.defaultRedirectUrl;
+      this.redirectUrl = params[Routing.PARAMS.LOGIN_REDIRECT_URL_NAME] || this.defaultRedirectUrl;
     });
   }
 
-  private loginSuccessCallback(): void {
+  private onSuccessLogin(): void {
     this.router.navigate([this.redirectUrl]);
-    this.notifierService.notify(Constants.NOTIFIER_KEY.success, this.translate.instant('notification.login.success'));
+    this.notifierService.notify(Constants.NOTIFIER_KEY.SUCCESS, this.translate.instant('notification.login.success'));
   }
 
-  private loginFailureCallback(error: ErrorResponse): void {
-    this.notifierService.notify(Constants.NOTIFIER_KEY.error, error.message);
+  private onFailureLogin(error: ErrorResponse): void {
+    this.notifierService.notify(Constants.NOTIFIER_KEY.ERROR, error.message);
   }
 }
