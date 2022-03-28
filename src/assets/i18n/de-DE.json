@@ -19,7 +19,7 @@
     }
   },
 
-  "exceptions": {
+  "error": {
     "common": {
       "unauthorized": "Sitzung ist abgelaufen Melden Sie sich bitte neu",
       "unknown": "Unbekannter Fehler ist aufgetreten"

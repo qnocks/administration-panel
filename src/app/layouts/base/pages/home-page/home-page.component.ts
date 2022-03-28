@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AuthService } from '../../../auth/services/auth.service';
 import { Router } from '@angular/router';
+import { Routing } from '../../../../core/constants/routing';
 
 @Component({
   selector: 'psap-home-page',
@@ -22,7 +23,7 @@ export class HomePageComponent {
   logout(): void {
     this.authService.logout().subscribe({
       next: () => {
-        this.router.navigate(['auth/login']);
+        this.router.navigate([Routing.AUTH.ABSOLUTE_LOGIN]);
       },
       error: (error) => {
         console.log(error);

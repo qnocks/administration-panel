@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpStatusCode } from '@angular/common/http';
-import { formatNumber } from '@angular/common';
+import { Routing } from '../../../../core/constants/routing';
 
 @Component({
   selector: 'psap-error-page',
@@ -11,13 +11,14 @@ import { formatNumber } from '@angular/common';
 })
 export class ErrorPageComponent implements OnInit {
   statusCode: string;
+  readonly redirectUrl: string = `/${Routing.HOME.BASE}`;
+  private readonly defaultErrorCode: string = '400';
 
   constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    // TODO: string to constants
-    this.statusCode = this.route.snapshot.paramMap.get('statusCode') || '400';
+    this.statusCode = this.route.snapshot.paramMap.get(Routing.PARAMS.ERROR_CODE_PARAM) || this.defaultErrorCode;
   }
 
   isNotFound(): boolean {

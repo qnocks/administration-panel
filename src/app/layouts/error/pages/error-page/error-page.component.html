@@ -1,18 +1,19 @@
 <div class="card-wrapper">
   <mat-card>
     <div class="card-inner">
-      <mat-card-title>Oops!</mat-card-title>
+      <mat-card-title>{{ 'error.page.title' | translate }}</mat-card-title>
       <mat-card-subtitle>
         <div class="card-subtitle">
           <span class="card-subtitle-code">{{ statusCode }}</span>&nbsp;
-          <span class="card-subtitle-text">Error occurred</span>
+          <span class="card-subtitle-text">{{ 'error.page.subtitle' | translate }}</span>
         </div>
       </mat-card-subtitle>
       <mat-card-content>
-        <h4 *ngIf="isNotFound()">{{ 'exceptions.common.forbidden' | translate }}</h4>
-        <h4 *ngIf="isForbidden()">{{ 'exceptions.common.not_found' | translate }}</h4>
-<!--        TODO: string to constants -->
-        <button [routerLink]="'/home'" mat-raised-button type="submit" color="primary">Back to homepage</button>
+        <h4 *ngIf="isNotFound()">{{ 'error.http.forbidden' | translate }}</h4>
+        <h4 *ngIf="isForbidden()">{{ 'error.http.not_found' | translate }}</h4>
+        <button [routerLink]="[redirectUrl]" mat-raised-button type="submit" color="primary">
+          {{ 'error.page.button' | translate }}
+        </button>
       </mat-card-content>
     </div>
   </mat-card>

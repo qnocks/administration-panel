@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Constants } from '../../../core/constants/constants';
 import { AuthService } from '../../auth/services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Routing } from '../../../core/constants/routing';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
@@ -59,29 +60,28 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     this.authService.logout().subscribe({
       next: () => {
         console.log('IN handleUnauthorizedStatus next');
-        // TODO: string to constants
-        this.router.navigate(['auth/login']);
+        this.router.navigate([Routing.AUTH.ABSOLUTE_LOGIN]);
         this.notifierService.notify(Constants.NOTIFIER_KEY.ERROR,
-          this.translateService.instant('exceptions.common.unauthorized'));
+          this.translateService.instant('error.http.unauthorized'));
       }
     });
   }
 
   private handleForbiddenStatus(error: HttpErrorResponse): void {
-    this.router.navigate(['error', { statusCode: error.status }], { queryParamsHandling: 'preserve' });
+    this.router.navigate(['error', { statusCode: error.status }]);
   }
 
   private handleNotFoundStatus(error: HttpErrorResponse): void {
-    this.router.navigate(['error', { statusCode: error.status }], { queryParamsHandling: 'preserve' });
+    this.router.navigate(['error', { statusCode: error.status }]);
   }
 
   private handleInternalServerError(): void {
     this.notifierService.notify(Constants.NOTIFIER_KEY.ERROR,
-      this.translateService.instant('exceptions.common.server_error'));
+      this.translateService.instant('error.http.server_error'));
   }
 
   private handleUnknownError(): void {
     this.notifierService.notify(Constants.NOTIFIER_KEY.ERROR,
-      this.translateService.instant('exceptions.common.unknown'));
+      this.translateService.instant('error.http.unknown'));
   }
 }
