@@ -21,7 +21,7 @@ export class AuthService extends BaseApiService {
   }
 
   login(request: LoginRequest): Observable<TokenResponse> {
-    return super.post<TokenResponse>(Endpoints.AUTH.login, request)
+    return super.post<TokenResponse>(Endpoints.AUTH.LOGIN, request)
       .pipe(
         tap({
           next: (token) => {
@@ -33,7 +33,7 @@ export class AuthService extends BaseApiService {
 
   logout(): Observable<void> {
     const logoutRequest: LogoutRequest = { username: this.tokenStorage.getUser().username };
-    return super.post<void>(Endpoints.AUTH.logout, logoutRequest)
+    return super.post<void>(Endpoints.AUTH.LOGOUT, logoutRequest)
       .pipe(
         tap({
           complete: () => {

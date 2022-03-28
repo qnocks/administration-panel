@@ -51,7 +51,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   }
 
   private handleBadRequestStatus(error: HttpErrorResponse): void {
-    this.notifierService.notify(Constants.NOTIFIER_KEY.error, error.error.message);
+    this.notifierService.notify(Constants.NOTIFIER_KEY.ERROR, error.error.message);
   }
 
   private handleUnauthorizedStatus(): void {
@@ -61,7 +61,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         console.log('IN handleUnauthorizedStatus next');
         // TODO: string to constants
         this.router.navigate(['auth/login']);
-        this.notifierService.notify(Constants.NOTIFIER_KEY.error,
+        this.notifierService.notify(Constants.NOTIFIER_KEY.ERROR,
           this.translateService.instant('exceptions.common.unauthorized'));
       }
     });
@@ -75,13 +75,13 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     this.router.navigate(['error', { statusCode: error.status }], { queryParamsHandling: 'preserve' });
   }
 
-  private handleInternalServerError() {
-    this.notifierService.notify(Constants.NOTIFIER_KEY.error,
+  private handleInternalServerError(): void {
+    this.notifierService.notify(Constants.NOTIFIER_KEY.ERROR,
       this.translateService.instant('exceptions.common.server_error'));
   }
 
   private handleUnknownError(): void {
-    this.notifierService.notify(Constants.NOTIFIER_KEY.error,
+    this.notifierService.notify(Constants.NOTIFIER_KEY.ERROR,
       this.translateService.instant('exceptions.common.unknown'));
   }
 }
