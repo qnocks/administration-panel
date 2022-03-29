@@ -58,6 +58,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   }
 
   private handleUnauthorizedStatus(): void {
+    console.log('IN handleUnauthorizedStatus');
     this.authService.logout().subscribe({
       next: () => {
         this.router.navigate([Routing.AUTH.ABSOLUTE_LOGIN]);
