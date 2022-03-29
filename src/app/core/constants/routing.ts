@@ -8,6 +8,10 @@ class Home {
   static readonly BASE = 'home';
 }
 
+class Error {
+  static readonly BASE = 'error';
+}
+
 class Params {
   static readonly LOGIN_REDIRECT_URL_NAME = 'returnUrl';
   static readonly ERROR_CODE_PARAM = 'statusCode';
@@ -16,5 +20,6 @@ class Params {
 export class Routing {
   static readonly AUTH = Auth;
   static readonly HOME = Home;
+  static readonly ERROR = Error;
   static readonly PARAMS = Params;
 }

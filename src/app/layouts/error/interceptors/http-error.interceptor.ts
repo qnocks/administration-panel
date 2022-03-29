@@ -25,8 +25,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
             if (error instanceof HttpErrorResponse) {
               this.handle(error);
             }
-          }
-        })
+          },
+        }),
       );
   }
 
@@ -63,12 +63,12 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         this.router.navigate([Routing.AUTH.ABSOLUTE_LOGIN]);
         this.notifierService.notify(Constants.NOTIFIER_KEY.ERROR,
           this.translateService.instant('error.http.unauthorized'));
-      }
+      },
     });
   }
 
   private redirectToErrorPage(statusCode: number): void {
-    this.router.navigate(['error', { statusCode: statusCode }]);
+    this.router.navigate([Constants.NOTIFIER_KEY.ERROR], { queryParams: { statusCode: statusCode }});
   }
 
   private handleInternalServerError(): void {

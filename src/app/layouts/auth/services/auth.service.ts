@@ -42,4 +42,8 @@ export class AuthService extends BaseApiService {
         })
       );
   }
+
+  test(): Observable<any> {
+    return super.get('http://localhost:8081/auth/test231312');
+  }
 }

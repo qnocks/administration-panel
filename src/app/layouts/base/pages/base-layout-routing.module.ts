@@ -31,7 +31,7 @@ const routes: Routes = [
       import('src/app/layouts/auth/pages/auth-layout.module').then((m) => m.AuthLayoutModule)
   },
   {
-    path: 'error',
+    path: Routing.ERROR.BASE,
     loadChildren: (): Promise<ErrorLayoutModule> =>
       import('src/app/layouts/error/error-layout.module').then((m) => m.ErrorLayoutModule)
   }

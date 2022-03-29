@@ -15,7 +15,7 @@ import { AuthLayoutModule } from './layouts/auth/pages/auth-layout.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,21 +27,21 @@ import { AuthLayoutModule } from './layouts/auth/pages/auth-layout.module';
     TranslateModule.forRoot(),
     SpinnerModule,
     NotificationModule,
-    AuthLayoutModule
+    AuthLayoutModule,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }
