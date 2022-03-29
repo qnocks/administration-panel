@@ -18,7 +18,7 @@ export abstract class BaseApiService {
 
   handleError(error: unknown): Observable<never> {
     // TODO: Implement actual error handling after login component's logic is done
-    console.log(error);
+    // console.log(error);
     return throwError(() => error);
   }
 }

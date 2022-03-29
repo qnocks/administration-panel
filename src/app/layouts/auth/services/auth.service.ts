@@ -7,6 +7,8 @@ import { Endpoints } from '../../../core/constants/endpoints';
 import { Observable, tap } from 'rxjs';
 import { TokenStorageService } from './token-storage.service';
 import { LogoutRequest } from '../models/logout-request';
+import { RefreshTokenResponse } from '../models/refresh-token-response';
+import { RefreshTokenRequest } from '../models/refresh-token-request';
 
 @Injectable()
 export class AuthService extends BaseApiService {
@@ -41,5 +43,21 @@ export class AuthService extends BaseApiService {
           }
         })
       );
+  }
+
+  refreshToken(request: RefreshTokenRequest): Observable<RefreshTokenResponse> {
+    return super.post<RefreshTokenResponse>(Endpoints.AUTH.REFRESH, request);
+      // .pipe(
+      //   tap({
+      //     next: (token) => {
+      //       this.tokenStorage.setRefreshedToken(token);
+      //     }
+      //   })
+      // );
+  }
+
+  test(): Observable<any> {
+    return super.get('http://localhost:8081/admin/transactions');
+    // return super.get('http://localhost:8081/auth/test');
   }
 }

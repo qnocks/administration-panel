@@ -22,4 +22,8 @@ export class HomePageComponent {
       }
     });
   }
+
+  test(): void {
+    this.authService.test().subscribe(res => console.log(res));
+  }
 }
