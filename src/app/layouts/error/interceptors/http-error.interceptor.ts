@@ -30,7 +30,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
       );
   }
 
-  private handle(error: HttpErrorResponse) {
+  private handle(error: HttpErrorResponse): void {
     switch (error.status) {
       case HttpStatusCode.BadRequest:
         this.handleBadRequestStatus(error);
@@ -58,7 +58,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   }
 
   private handleUnauthorizedStatus(): void {
-    console.log('IN handleUnauthorizedStatus');
     this.authService.logout().subscribe({
       next: () => {
         this.router.navigate([Routing.AUTH.ABSOLUTE_LOGIN]);
