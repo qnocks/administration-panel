@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: Routing.HOME.BASE,
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: Routing.HOME.BASE,
@@ -21,25 +21,25 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: (): Promise<HomePageModule> =>
-          import('src/app/layouts/base/pages/home-page/home-page.module').then((m) => m.HomePageModule)
-      }
-    ]
+          import('src/app/layouts/base/pages/home-page/home-page.module').then((m) => m.HomePageModule),
+      },
+    ],
   },
   {
     path: Routing.AUTH.BASE,
     loadChildren: (): Promise<AuthLayoutModule> =>
-      import('src/app/layouts/auth/pages/auth-layout.module').then((m) => m.AuthLayoutModule)
+      import('src/app/layouts/auth/pages/auth-layout.module').then((m) => m.AuthLayoutModule),
   },
   {
     path: Routing.ERROR.BASE,
     loadChildren: (): Promise<ErrorLayoutModule> =>
-      import('src/app/layouts/error/error-layout.module').then((m) => m.ErrorLayoutModule)
-  }
+      import('src/app/layouts/error/error-layout.module').then((m) => m.ErrorLayoutModule),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class BaseLayoutRoutingModule {
 }

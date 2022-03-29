@@ -11,21 +11,21 @@ import { I18nModule } from '../../../../shared/i18n/i18n.module';
 
 @NgModule({
   declarations: [
-    LoginPageComponent
+    LoginPageComponent,
   ],
   imports: [
-    RouterModule.forChild([{ path: '', component: LoginPageComponent }]),
+    RouterModule.forChild([{path: '', component: LoginPageComponent}]),
     CommonModule,
     MatCardModule,
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    I18nModule
+    I18nModule,
   ],
   exports: [
-    LoginPageComponent
-  ]
+    LoginPageComponent,
+  ],
 })
 export class LoginPageModule {
 }

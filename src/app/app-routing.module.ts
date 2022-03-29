@@ -6,13 +6,13 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: (): Promise<BaseLayoutModule> =>
-      import('src/app/layouts/base/pages/base-layout.module').then((m) => m.BaseLayoutModule)
-  }
+      import('src/app/layouts/base/pages/base-layout.module').then((m) => m.BaseLayoutModule),
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, {relativeLinkResolution: 'legacy'})],
+  exports: [RouterModule],
 })
 export class AppRoutingModule {
 }

@@ -13,8 +13,8 @@ export class AuthInterceptor implements HttpInterceptor {
     if (this.tokenStorage.isLoggedIn()) {
       request = request.clone({
         setHeaders: {
-          Authorization: `${this.tokenStorage.tokenType} ${this.tokenStorage.getUser().accessToken}`
-        }
+          Authorization: `${this.tokenStorage.tokenType} ${this.tokenStorage.getUser().accessToken}`,
+        },
       });
     }
 
