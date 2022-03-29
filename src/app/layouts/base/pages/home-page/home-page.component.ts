@@ -1,7 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { AuthService } from '../../../auth/services/auth.service';
-import { Router } from '@angular/router';
-import { Routing } from '../../../../core/constants/routing';
 
 @Component({
   selector: 'psap-home-page',
@@ -10,19 +7,4 @@ import { Routing } from '../../../../core/constants/routing';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePageComponent {
-    constructor(private authService: AuthService,
-              private router: Router) {
-  }
-
-  // TODO: move function to header when implementing header
-  logout(): void {
-    this.authService.logout().subscribe({
-      next: () => {
-        this.router.navigate([Routing.AUTH.BASE]);
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    });
-  }
 }
