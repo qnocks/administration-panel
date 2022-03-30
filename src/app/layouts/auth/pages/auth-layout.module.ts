@@ -6,18 +6,18 @@ import { AuthGuard } from '../guards/auth.guard';
 
 @NgModule({
   declarations: [
-    AuthLayoutComponent
+    AuthLayoutComponent,
   ],
   imports: [
-    AuthLayoutRoutingModule
+    AuthLayoutRoutingModule,
   ],
   providers: [
     AuthService,
-    AuthGuard
+    AuthGuard,
   ],
   exports: [
-    AuthLayoutComponent
-  ]
+    AuthLayoutComponent,
+  ],
 })
 export class AuthLayoutModule {
 }

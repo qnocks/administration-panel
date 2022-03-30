@@ -10,12 +10,11 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log('intercept');
     if (this.tokenStorage.isLoggedIn()) {
       request = request.clone({
         setHeaders: {
-          Authorization: `${this.tokenStorage.tokenType} ${this.tokenStorage.getUser().accessToken}`
-        }
+          Authorization: `${this.tokenStorage.tokenType} ${this.tokenStorage.getUser().accessToken}`,
+        },
       });
     }
 

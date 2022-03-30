@@ -10,7 +10,7 @@ import { Routing } from '../../../../core/constants/routing';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePageComponent {
-    constructor(private authService: AuthService,
+  constructor(private authService: AuthService,
               private router: Router) {
   }
 
@@ -18,10 +18,7 @@ export class HomePageComponent {
   logout(): void {
     this.authService.logout().subscribe({
       next: () => {
-        this.router.navigate([Routing.AUTH.BASE]);
-      },
-      error: (error) => {
-        console.log(error);
+        this.router.navigate([Routing.AUTH.ABSOLUTE_LOGIN]);
       }
     });
   }

@@ -1,23 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ErrorLayoutComponent } from '../../error-layout.component';
 import { RouterModule } from '@angular/router';
-import { HomePageComponent } from './home-page.component';
-import { MatButtonModule } from '@angular/material/button';
+import { ErrorPageComponent } from './error-page.component';
 import { I18nModule } from '../../../../shared/i18n/i18n.module';
 
 @NgModule({
   declarations: [
-    HomePageComponent,
+    ErrorLayoutComponent,
   ],
   imports: [
-    RouterModule.forChild([{ path: '', component: HomePageComponent }]),
+    RouterModule.forChild([{path: '', component: ErrorPageComponent}]),
     CommonModule,
-    MatButtonModule,
     I18nModule,
   ],
   exports: [
-    HomePageComponent,
+    ErrorLayoutComponent,
   ],
 })
-export class HomePageModule {
+export class ErrorPageModule {
 }
