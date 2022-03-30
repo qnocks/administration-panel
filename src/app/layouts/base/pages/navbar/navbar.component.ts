@@ -29,4 +29,8 @@ export class NavbarComponent implements OnInit {
       }
     });
   }
+
+  onToggleSidenav() {
+    // TODO: open sidenav component
+  }
 }
