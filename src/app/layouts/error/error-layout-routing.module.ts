@@ -11,15 +11,15 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: (): Promise<ErrorPageModule> =>
-          import('src/app/layouts/error/pages/error-page/error-page.module').then((m) => m.ErrorPageModule)
-      }
-    ]
-  }
+          import('src/app/layouts/error/pages/error-page/error-page.module').then((m) => m.ErrorPageModule),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class ErrorLayoutRoutingModule {
 }

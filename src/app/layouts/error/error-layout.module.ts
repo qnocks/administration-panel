@@ -9,7 +9,7 @@ import { I18nModule } from '../../shared/i18n/i18n.module';
 
 @NgModule({
   declarations: [
-    ErrorPageComponent
+    ErrorPageComponent,
   ],
   imports: [
     CommonModule,
@@ -17,10 +17,11 @@ import { I18nModule } from '../../shared/i18n/i18n.module';
     AuthLayoutModule,
     MatCardModule,
     MatButtonModule,
-    I18nModule
+    I18nModule,
   ],
   exports: [
-    ErrorPageComponent
-  ]
+    ErrorPageComponent,
+  ],
 })
-export class ErrorLayoutModule { }
+export class ErrorLayoutModule {
+}

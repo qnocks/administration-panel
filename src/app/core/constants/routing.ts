@@ -17,4 +17,5 @@ export class Routing {
   static readonly AUTH = Auth;
   static readonly HOME = Home;
   static readonly PARAMS = Params;
+  static readonly ERROR = 'error';
 }

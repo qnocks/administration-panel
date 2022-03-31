@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpStatusCode } from '@angular/common/http';
-import { Observable, tap, concat } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { NotifierService } from 'angular-notifier';
 import { Router } from '@angular/router';
 import { Constants } from '../../../core/constants/constants';
@@ -27,8 +27,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
             if (error instanceof HttpErrorResponse) {
               this.handle(error);
             }
-          }
-        })
+          },
+        }),
       );
   }
 

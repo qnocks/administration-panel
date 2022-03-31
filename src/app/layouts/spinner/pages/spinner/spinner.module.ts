@@ -8,22 +8,23 @@ import { SpinnerService } from '../../services/spinner.service';
 
 @NgModule({
   declarations: [
-    SpinnerComponent
+    SpinnerComponent,
   ],
   imports: [
     CommonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
   providers: [
     SpinnerService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SpinnerInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
   exports: [
-    SpinnerComponent
-  ]
+    SpinnerComponent,
+  ],
 })
-export class SpinnerModule { }
+export class SpinnerModule {
+}

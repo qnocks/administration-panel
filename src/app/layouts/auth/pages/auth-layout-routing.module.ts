@@ -17,15 +17,15 @@ const routes: Routes = [
       {
         path: Routing.AUTH.LOGIN,
         loadChildren: (): Promise<LoginPageModule> =>
-          import('src/app/layouts/auth/pages/login-page/login-page.module').then((m) => m.LoginPageModule)
-      }
-    ]
-  }
+          import('src/app/layouts/auth/pages/login-page/login-page.module').then((m) => m.LoginPageModule),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AuthLayoutRoutingModule {
 }

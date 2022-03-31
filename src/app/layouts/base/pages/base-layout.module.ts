@@ -6,16 +6,16 @@ import { AuthLayoutModule } from '../../auth/pages/auth-layout.module';
 
 @NgModule({
   declarations: [
-    BaseLayoutComponent
+    BaseLayoutComponent,
   ],
   imports: [
     CommonModule,
     BaseLayoutRoutingModule,
-    AuthLayoutModule
+    AuthLayoutModule,
   ],
   exports: [
-    BaseLayoutComponent
-  ]
+    BaseLayoutComponent,
+  ],
 })
 export class BaseLayoutModule {
 }

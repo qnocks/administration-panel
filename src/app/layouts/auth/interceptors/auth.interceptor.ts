@@ -21,8 +21,8 @@ export class AuthInterceptor implements HttpInterceptor {
       console.log("JWT APPLIED");
       request = request.clone({
         setHeaders: {
-          Authorization: `${this.tokenStorage.tokenType} ${this.tokenStorage.getUser().accessToken}`
-        }
+          Authorization: `${this.tokenStorage.tokenType} ${this.tokenStorage.getUser().accessToken}`,
+        },
       });
     }
 
