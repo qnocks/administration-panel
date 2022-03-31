@@ -20,6 +20,13 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    if (request.headers.get(Constants.INTERCEPTOR_SKIP_HEADER)) {
+      request = request.clone({
+        headers: request.headers.delete(Constants.INTERCEPTOR_SKIP_HEADER),
+      });
+      return next.handle(request);
+    }
+
     return next.handle(request)
       .pipe(
         tap({
@@ -60,96 +67,22 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   }
 
   private handleUnauthorizedStatus(): void {
-    // TODO: implement following steps in next commit
-    //  1. authService.refreshToken()
-    //  2. if SUCCESS then save new tokens and proceed the current request (how?)
-    //  3. if refresh token has expired (FAILURE) then authService.logout()
-
     const refreshToken = this.tokenStorageService.getUser().refreshToken;
-    // console.log(refreshToken);
-
-    console.log('Refreshing token...');
-    this.authService.refreshToken({refreshToken: refreshToken})
-      .pipe(
-        tap({
-          error: (error) => {
-            console.log('Logging out...');
-            this.authService.logout().subscribe({
-              next: () => {
-                console.log('Redirecting to login page...');
-                this.router.navigate([Routing.AUTH.ABSOLUTE_LOGIN]);
-              }
-            });
-          }
-        })
-      )
-      .subscribe({
-        next: (token) => {
-          console.log('Setting refreshed token...');
-          this.tokenStorageService.setRefreshedToken(token);
-        }
-      });
-
-    // const refreshToken$ = this.authService.refreshToken({refreshToken: refreshToken});
-    // const logout$ = this.authService.logout();
-    // concat(refreshToken$, logout$);
-
-    // this.authService.refreshToken({refreshToken: refreshToken})
-    //   .pipe(
-    //     tap({
-    //       next: (token) => {
-    //         console.log('authService.refreshToken() SUCCESS');
-    //         this.tokenStorageService.setRefreshedToken(token);
-    //       },
-    //       error: (error) => {
-    //         console.log('authService.refreshToken() ERROR');
-    //         this.authService.logout()
-    //           .pipe(
-    //             tap({
-    //               next: () => {
-    //                 console.log('authService.login() SUCCESS');
-    //                 this.router.navigate([Routing.AUTH.ABSOLUTE_LOGIN]);
-    //               }
-    //             })
-    //           );
-    //       }
-    //     })
-    //   );
-
-    // this.authService.refreshToken({refreshToken: refreshToken}).subscribe({
-    //   next: (token) => {
-    //     console.log('authService.refreshToken() SUCCESS');
-    //     this.tokenStorageService.setRefreshedToken(token);
-    //   },
-    //   error: () => {
-    //     console.log('authService.refreshToken() ERROR');
-    //     console.log('authService.logout()');
-    //     this.authService.logout().subscribe({
-    //       next: () => {
-    //         console.log('authService.logout() SUCCESS');
-    //         this.router.navigate([Routing.AUTH.ABSOLUTE_LOGIN]);
-    //         this.notifierService.notify(Constants.NOTIFIER_KEY.ERROR,
-    //           this.translateService.instant('error.http.unauthorized'));
-    //       },
-    //       error: (error) => {
-    //         console.log('authService.logout() FAILURE');
-    //         console.log(error)
-    //       }
-    //     });
-    //   }
-    // });
-
-    // this.authService.logout().subscribe({
-    //   next: () => {
-    //     this.router.navigate([Routing.AUTH.ABSOLUTE_LOGIN]);
-    //     this.notifierService.notify(Constants.NOTIFIER_KEY.ERROR,
-    //       this.translateService.instant('error.http.unauthorized'));
-    //   }
-    // });
+    this.authService.refreshToken({ refreshToken: refreshToken }).subscribe({
+      error: () => {
+        this.authService.logout().subscribe({
+          next: () => {
+            this.router.navigate([Routing.AUTH.ABSOLUTE_LOGIN]);
+            this.notifierService.notify(Constants.NOTIFIER_KEY.ERROR,
+              this.translateService.instant('error.http.unauthorized'));
+          },
+        });
+      },
+    });
   }
 
   private redirectToErrorPage(statusCode: number): void {
-    this.router.navigate(['error', {statusCode: statusCode}]);
+    this.router.navigate(['error', { statusCode: statusCode }]);
   }
 
   private handleInternalServerError(): void {

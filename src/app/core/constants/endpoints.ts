@@ -1,10 +1,10 @@
 import { environment } from '../../../environments/environment';
 
 class Auth {
-  private static readonly baseAuth = 'auth';
-  static readonly LOGIN = `${environment.baseApiUrl}/${Auth.baseAuth}/login?trace=true`;
-  static readonly LOGOUT = `${environment.baseApiUrl}/${Auth.baseAuth}/logout?trace=true`;
-  static readonly REFRESH = `${environment.baseApiUrl}/${Auth.baseAuth}/refresh?trace=true`;
+  static readonly BASE = 'auth';
+  static readonly LOGIN = `${environment.baseApiUrl}/${Auth.BASE}/login`;
+  static readonly LOGOUT = `${environment.baseApiUrl}/${Auth.BASE}/logout`;
+  static readonly REFRESH = `${environment.baseApiUrl}/${Auth.BASE}/refresh`;
 }
 
 export class Endpoints {

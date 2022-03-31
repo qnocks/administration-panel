@@ -41,9 +41,9 @@ export class TokenStorageService {
       accessToken: token.accessToken,
       type: token.type,
       refreshToken: token.refreshToken
-    }
+    };
 
-    this.storageService.setValue(Constants.TOKEN_STORAGE.USER_KEY, JSON.stringify(tokenResponse))
+    this.storageService.setValue(Constants.TOKEN_STORAGE.USER_KEY, JSON.stringify(tokenResponse));
 
     console.log(`NEW TOKEN = - ${this.getUser().accessToken}`);
   }
