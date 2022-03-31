@@ -10,7 +10,7 @@ import { I18nHelper } from './i18n-helper';
   imports: [
     CommonModule,
     TranslateModule.forChild({
-      defaultLanguage: 'de-DE',
+      defaultLanguage: 'en-US',
       loader: {
         provide: TranslateLoader,
         useFactory: I18nLoader,
