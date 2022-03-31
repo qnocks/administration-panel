@@ -11,15 +11,20 @@
     },
     "button": "Login"
   },
-
   "notification": {
     "login": {
       "success": "Login successfully",
       "failure": "Error occurred. Cannot login"
     }
   },
-
   "navbar": {
+    "title": "Application Panel",
+    "home": "Home",
     "logout": "Logout"
+  },
+  "sidebar": {
+    "header": "Menu",
+    "logout": "Logout",
+    "home": "Home"
   }
 }

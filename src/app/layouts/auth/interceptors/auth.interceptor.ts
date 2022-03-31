@@ -10,8 +10,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log('intercept');
-    if (this.tokenStorage.isLoggedIn()) {
+    if (this.tokenStorage.isLoggedIn() && this.isNotAuthRequest(request)) {
       request = request.clone({
         setHeaders: {
           Authorization: `${this.tokenStorage.tokenType} ${this.tokenStorage.getUser().accessToken}`
@@ -20,5 +19,10 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     return next.handle(request);
+  }
+
+  isNotAuthRequest(request: HttpRequest<unknown>): boolean {
+    // TODO: string to const
+    return !request.url.includes('auth');
   }
 }
