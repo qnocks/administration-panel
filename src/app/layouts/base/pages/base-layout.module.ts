@@ -18,8 +18,8 @@ import { NavbarModule } from './navbar/navbar.module';
     NavbarModule,
   ],
   exports: [
-    BaseLayoutComponent
-  ]
+    BaseLayoutComponent,
+  ],
 })
 export class BaseLayoutModule {
 }

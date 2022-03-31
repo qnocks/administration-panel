@@ -10,6 +10,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SpinnerModule } from './layouts/spinner/pages/spinner/spinner.module';
 import { NotificationModule } from './shared/notification/notification.module';
 import { AuthInterceptor } from './layouts/auth/interceptors/auth.interceptor';
+import { HttpErrorInterceptor } from './layouts/error/interceptors/http-error.interceptor';
+import { AuthLayoutModule } from './layouts/auth/pages/auth-layout.module';
 
 @NgModule({
   declarations: [
@@ -24,16 +26,22 @@ import { AuthInterceptor } from './layouts/auth/interceptors/auth.interceptor';
     HttpClientModule,
     TranslateModule.forRoot(),
     SpinnerModule,
-    NotificationModule
+    NotificationModule,
+    AuthLayoutModule,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

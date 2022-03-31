@@ -6,13 +6,14 @@ import notificationOptions from './notification-options';
 @NgModule({
   imports: [
     CommonModule,
-    NotifierModule.withConfig(notificationOptions)
+    NotifierModule.withConfig(notificationOptions),
   ],
   providers: [
-    NotifierService
+    NotifierService,
   ],
   exports: [
     NotifierModule,
-  ]
+  ],
 })
-export class NotificationModule { }
+export class NotificationModule {
+}

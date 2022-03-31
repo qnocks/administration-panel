@@ -1,0 +1,19 @@
+<div class="card-wrapper">
+  <mat-card>
+    <div>
+      <mat-card-title>{{ 'error.page.title' | translate }}</mat-card-title>
+      <mat-card-subtitle>
+        <div class="card-subtitle-wrapper">
+          <span class="card-subtitle-status">{{ statusCode }}</span>&nbsp;
+          <span>{{ 'error.page.subtitle' | translate }}</span>
+        </div>
+      </mat-card-subtitle>
+      <mat-card-content>
+        <h4>{{ errorMessage }}</h4>
+        <button (click)="redirectToHomepage()" mat-raised-button type="submit" color="primary">
+          {{ 'error.page.button' | translate }}
+        </button>
+      </mat-card-content>
+    </div>
+  </mat-card>
+</div>
