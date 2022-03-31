@@ -32,8 +32,6 @@ export class TokenStorageService {
   }
 
   setRefreshedToken(token: RefreshTokenResponse): void {
-    // TODO: replace local storage specific fields (accessToken, type, refreshToken)
-
     const username = this.getUser().username;
 
     const tokenResponse = {
@@ -44,7 +42,5 @@ export class TokenStorageService {
     };
 
     this.storageService.setValue(Constants.TOKEN_STORAGE.USER_KEY, JSON.stringify(tokenResponse));
-
-    console.log(`NEW TOKEN = - ${this.getUser().accessToken}`);
   }
 }

@@ -15,7 +15,7 @@ import { AuthLayoutModule } from './layouts/auth/pages/auth-layout.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
