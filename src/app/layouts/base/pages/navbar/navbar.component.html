@@ -4,10 +4,11 @@
     class="sidenav"
     fixedInViewport="false"
     [ngClass]="{hidden: (isHandset$ | async) === false}">
-    <mat-primary>{{ 'sidebar.header' | translate }}</mat-primary>
+    <mat-toolbar>{{ 'sidebar.header' | translate }}</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item (click)="redirectToHome()">{{ 'sidebar.home' | translate }}</a>
       <button mat-list-item (click)="logout()">{{ 'sidebar.logout' | translate }}</button>
+      <button mat-list-item (click)="test()">Test</button>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -24,6 +25,7 @@
       <div *ngIf="(isHandset$ | async) === false">
         <a mat-button (click)="redirectToHome()">{{ 'navbar.home' | translate }}</a>
         <button mat-button (click)="logout()">{{ 'navbar.logout' | translate }}</button>
+        <button mat-list-item (click)="test()">Test</button>
       </div>
     </mat-toolbar>
   </mat-sidenav-content>

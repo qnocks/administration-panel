@@ -34,4 +34,8 @@ export class NavbarComponent {
       },
     });
   }
+
+  test(): void {
+    this.authService.test().subscribe(res => console.log(res));
+  }
 }

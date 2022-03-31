@@ -42,4 +42,8 @@ export class AuthService extends BaseApiService {
         })
       );
   }
+
+  test() {
+    return super.get('http://localhost:8081/admin/transactions')
+  }
 }
