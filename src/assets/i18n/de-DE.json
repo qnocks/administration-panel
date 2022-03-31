@@ -34,8 +34,14 @@
       "button": "Zurück zur Startseite"
     }
   },
-
   "navbar": {
+    "title": "Application Panel",
+    "home": "Startseite",
     "logout": "Logout"
+  },
+  "sidebar": {
+    "header": "Menü",
+    "logout": "Logout",
+    "home": "Startseite"
   }
 }
