@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { ErrorLayoutComponent } from './error-layout.component';
-import { ErrorPageModule } from './pages/error-page/error-page.module';
+import { ErrorPageModule } from './error-page/error-page.module';
 
 const routes: Routes = [
   {

@@ -5,7 +5,9 @@ import { HomePageModule } from './home-page/home-page.module';
 import { AuthGuard } from '../../auth/guards/auth.guard';
 import { AuthLayoutModule } from '../../auth/pages/auth-layout.module';
 import { Routing } from '../../../core/constants/routing';
-import { ErrorLayoutModule } from '../../error/error-layout.module';
+import { ErrorLayoutModule } from '../../error/pages/error-layout.module';
+import { TransactionLayoutModule } from '../../transaction/pages/transaction-layout.module';
+import { TransactionLayoutComponent } from '../../transaction/pages/transaction-layout.component';
 
 const routes: Routes = [
   {
@@ -33,7 +35,7 @@ const routes: Routes = [
   {
     path: Routing.ERROR,
     loadChildren: (): Promise<ErrorLayoutModule> =>
-      import('src/app/layouts/error/error-layout.module').then((m) => m.ErrorLayoutModule),
+      import('src/app/layouts/error/pages/error-layout.module').then((m) => m.ErrorLayoutModule),
   },
 ];
 

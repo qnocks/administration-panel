@@ -12,6 +12,7 @@ import { NotificationModule } from './shared/notification/notification.module';
 import { AuthInterceptor } from './layouts/auth/interceptors/auth.interceptor';
 import { HttpErrorInterceptor } from './layouts/error/interceptors/http-error.interceptor';
 import { AuthLayoutModule } from './layouts/auth/pages/auth-layout.module';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AuthLayoutModule } from './layouts/auth/pages/auth-layout.module';
     SpinnerModule,
     NotificationModule,
     AuthLayoutModule,
+    LayoutModule,
   ],
   providers: [
     {
