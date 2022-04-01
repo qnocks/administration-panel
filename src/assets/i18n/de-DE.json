@@ -42,6 +42,7 @@
   "sidebar": {
     "header": "Menü",
     "logout": "Logout",
-    "home": "Startseite"
+    "home": "Startseite",
+    "transactions": "Transaktionen"
   }
 }

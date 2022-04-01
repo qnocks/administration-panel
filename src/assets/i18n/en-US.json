@@ -40,6 +40,7 @@
   "sidebar": {
     "header": "Menu",
     "logout": "Logout",
-    "home": "Home"
+    "home": "Home",
+    "transactions": "Transactions"
   }
 }
