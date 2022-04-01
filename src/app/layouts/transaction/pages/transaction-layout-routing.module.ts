@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: '',
     component: TransactionLayoutComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     children: [
       {
         path: '',

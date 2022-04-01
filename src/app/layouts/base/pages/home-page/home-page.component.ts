@@ -22,4 +22,9 @@ export class HomePageComponent {
       }
     });
   }
+
+  redirectToTransactions() {
+    this.router.navigate([Routing.TRANSACTION.BASE]);
+    // this.authService.test().subscribe(res => console.log(res));
+  }
 }

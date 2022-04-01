@@ -7,7 +7,6 @@ import { AuthLayoutModule } from '../../auth/pages/auth-layout.module';
 import { Routing } from '../../../core/constants/routing';
 import { ErrorLayoutModule } from '../../error/pages/error-layout.module';
 import { TransactionLayoutModule } from '../../transaction/pages/transaction-layout.module';
-import { TransactionLayoutComponent } from '../../transaction/pages/transaction-layout.component';
 
 const routes: Routes = [
   {
@@ -36,6 +35,11 @@ const routes: Routes = [
     path: Routing.ERROR,
     loadChildren: (): Promise<ErrorLayoutModule> =>
       import('src/app/layouts/error/pages/error-layout.module').then((m) => m.ErrorLayoutModule),
+  },
+  {
+    path: Routing.TRANSACTION.BASE,
+    loadChildren: (): Promise<TransactionLayoutModule> =>
+      import('src/app/layouts/transaction/pages/transaction-layout.module').then((m) => m.TransactionLayoutModule),
   },
 ];
 

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'psap-home-layout',
+  selector: 'psap-base-layout',
   template: `<router-outlet></router-outlet>`,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
