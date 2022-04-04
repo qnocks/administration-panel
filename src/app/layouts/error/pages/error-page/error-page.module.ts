@@ -10,7 +10,7 @@ import { I18nModule } from '../../../../shared/i18n/i18n.module';
     ErrorLayoutComponent,
   ],
   imports: [
-    RouterModule.forChild([{path: '', component: ErrorPageComponent}]),
+    RouterModule.forChild([{ path: '', component: ErrorPageComponent }]),
     CommonModule,
     I18nModule,
   ],

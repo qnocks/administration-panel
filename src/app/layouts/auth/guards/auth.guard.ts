@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { Routing } from '../../../core/constants/routing';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -18,7 +19,7 @@ export class AuthGuard implements CanActivate {
       return true;
     }
 
-    this.router.navigate(['/auth/login'], {
+    this.router.navigate([Routing.AUTH.ABSOLUTE_LOGIN], {
       queryParams: {
         returnUrl: state.url,
       },

@@ -14,7 +14,7 @@ import { I18nModule } from '../../../../shared/i18n/i18n.module';
     LoginPageComponent,
   ],
   imports: [
-    RouterModule.forChild([{path: '', component: LoginPageComponent}]),
+    RouterModule.forChild([{ path: '', component: LoginPageComponent }]),
     CommonModule,
     MatCardModule,
     MatInputModule,

@@ -4,7 +4,6 @@ import { HttpStatusCode } from '@angular/common/http';
 import { Routing } from '../../../../core/constants/routing';
 import { TranslateService } from '@ngx-translate/core';
 import { I18nHelper } from '../../../../shared/i18n/i18n-helper';
-import { Constants } from '../../../../core/constants/constants';
 
 @Component({
   selector: 'psap-error-page',
@@ -39,7 +38,7 @@ export class ErrorPageComponent implements OnInit {
     this.i18nHelper.loadTranslations().subscribe(() => {
       if (this.statusCode === HttpStatusCode.NotFound.toString()) {
         this.errorMessage = this.translateService.instant('error.http.not_found');
-      } else if (this.statusCode == HttpStatusCode.Forbidden.toString()) {
+      } else if (this.statusCode === HttpStatusCode.Forbidden.toString()) {
         this.errorMessage = this.translateService.instant('error.http.forbidden');
       }
     });
