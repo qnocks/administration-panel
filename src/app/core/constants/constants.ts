@@ -15,4 +15,5 @@ export class Constants {
   static readonly TOKEN_STORAGE = TokenStorage;
   static readonly NOTIFIER_KEY = NotifierKey;
   static readonly I18N = I18n;
+  static readonly INTERCEPTOR_SKIP_HEADER = 'skip';
 }
