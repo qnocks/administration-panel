@@ -38,7 +38,7 @@ export class ErrorPageComponent implements OnInit {
     this.i18nHelper.loadTranslations().subscribe(() => {
       if (this.statusCode === HttpStatusCode.NotFound.toString()) {
         this.errorMessage = this.translateService.instant('error.http.not_found');
-      } else if (this.statusCode == HttpStatusCode.Forbidden.toString()) {
+      } else if (this.statusCode === HttpStatusCode.Forbidden.toString()) {
         this.errorMessage = this.translateService.instant('error.http.forbidden');
       }
     });
