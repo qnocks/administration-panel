@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { I18nLoader } from './i18n-loader';
 import { I18nHelper } from './i18n-helper';
@@ -9,7 +9,6 @@ import { I18nHelper } from './i18n-helper';
   declarations: [],
   imports: [
     CommonModule,
-    HttpClientModule,
     TranslateModule.forChild({
       defaultLanguage: 'en-US',
       loader: {

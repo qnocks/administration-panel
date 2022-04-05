@@ -34,8 +34,15 @@
       "button": "Zurück zur Startseite"
     }
   },
-
   "navbar": {
+    "title": "Administration Panel",
+    "home": "Startseite",
     "logout": "Logout"
+  },
+  "sidebar": {
+    "header": "Menü",
+    "logout": "Logout",
+    "home": "Startseite",
+    "transactions": "Transaktionen"
   }
 }

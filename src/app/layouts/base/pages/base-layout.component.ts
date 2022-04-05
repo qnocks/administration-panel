@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'psap-home-layout',
-  template: `<router-outlet></router-outlet>`,
+  templateUrl: './base-layout.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BaseLayoutComponent {

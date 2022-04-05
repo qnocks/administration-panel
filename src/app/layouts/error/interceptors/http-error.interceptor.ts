@@ -82,7 +82,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   }
 
   private redirectToErrorPage(statusCode: number): void {
-    this.router.navigate([Constants.NOTIFIER_KEY.ERROR, { statusCode: statusCode }]);
+    this.router.navigate([Constants.NOTIFIER_KEY.ERROR], { queryParams: { statusCode: statusCode } });
   }
 
   private handleInternalServerError(): void {
