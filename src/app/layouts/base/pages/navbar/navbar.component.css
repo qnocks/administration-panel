@@ -20,6 +20,10 @@
   display: none;
 }
 
+.toolbar-title {
+  font-size: 1.2em;
+}
+
 .spacer {
   flex: 1 1 auto;
 }

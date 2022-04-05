@@ -20,11 +20,11 @@
         *ngIf="isHandset$ | async">
         <mat-icon>menu</mat-icon>
       </button>
-      <span>{{ 'navbar.title' | translate }}</span>
+      <span>
+        <button mat-button (click)="redirectToHome()" class="toolbar-title">{{ 'navbar.title' | translate }}</button>
+      </span>
       <span class="spacer"></span>
       <div *ngIf="(isHandset$ | async) === false">
-        <button mat-button (click)="redirectToHome()">{{ 'navbar.home' | translate }}</button>
-        <button mat-button (click)="redirectToTransactions()">{{ 'sidebar.transactions' | translate }}</button>
         <button mat-button (click)="logout()">{{ 'navbar.logout' | translate }}</button>
       </div>
     </mat-toolbar>

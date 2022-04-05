@@ -35,7 +35,7 @@
     }
   },
   "navbar": {
-    "title": "Application Panel",
+    "title": "Administration Panel",
     "home": "Startseite",
     "logout": "Logout"
   },
