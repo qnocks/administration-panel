@@ -4,6 +4,7 @@ import { TransactionLayoutComponent } from './transaction-layout.component';
 import { RouterModule } from '@angular/router';
 import { TransactionService } from '../services/transaction.service';
 import { TransactionLayoutRoutingModule } from './transaction-layout-routing.module';
+import { NavbarModule } from '../../base/pages/navbar/navbar.module';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { TransactionLayoutRoutingModule } from './transaction-layout-routing.mod
     CommonModule,
     RouterModule,
     TransactionLayoutRoutingModule,
+    NavbarModule,
   ],
   providers: [
     TransactionService,

@@ -29,6 +29,7 @@ export class NavbarComponent {
 
   redirectToTransactions(): void {
     // TODO: redirecting to transactions page when implementing transactions component
+    this.router.navigate([Routing.TRANSACTION.BASE]);
   }
 
   logout(): void {

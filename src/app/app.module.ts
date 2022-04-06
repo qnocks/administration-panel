@@ -13,6 +13,7 @@ import { AuthInterceptor } from './layouts/auth/interceptors/auth.interceptor';
 import { HttpErrorInterceptor } from './layouts/error/interceptors/http-error.interceptor';
 import { AuthLayoutModule } from './layouts/auth/pages/auth-layout.module';
 import { LayoutModule } from '@angular/cdk/layout';
+import { NavbarModule } from './layouts/base/pages/navbar/navbar.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { LayoutModule } from '@angular/cdk/layout';
     NotificationModule,
     AuthLayoutModule,
     LayoutModule,
+    NavbarModule,
   ],
   providers: [
     {

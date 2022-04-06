@@ -28,5 +28,8 @@
         <button mat-button (click)="logout()">{{ 'navbar.logout' | translate }}</button>
       </div>
     </mat-toolbar>
+    <mat-sidenav-container>
+      <ng-content></ng-content>
+    </mat-sidenav-container>
   </mat-sidenav-content>
 </mat-sidenav-container>
