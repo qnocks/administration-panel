@@ -1,5 +1,6 @@
 class TokenStorage {
   static readonly USER_KEY = 'username';
+  static readonly LANGUAGE_KEY = 'language';
 }
 
 class NotifierKey {
@@ -8,6 +9,17 @@ class NotifierKey {
 }
 
 class I18n {
+  static readonly DEFAULT_LANGUAGE_CODE = 'en-Us';
+  static readonly LANGUAGES = [
+    {
+      value: 'English',
+      code: 'en-US',
+    },
+    {
+      value: 'Deutsch',
+      code: 'de-DE',
+    },
+  ];
   static readonly HELPER_KEY = 'dummy';
 }
 
