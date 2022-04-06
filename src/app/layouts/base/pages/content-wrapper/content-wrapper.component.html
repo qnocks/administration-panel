@@ -1,0 +1,23 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport="false"
+    [ngClass]="{hidden: (isHandset$ | async) === false}">
+    <psap-sidenav></psap-sidenav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <psap-navbar>
+      <button
+        type="button"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </psap-navbar>
+    <mat-sidenav-container>
+      <ng-content></ng-content>
+    </mat-sidenav-container>
+  </mat-sidenav-content>
+</mat-sidenav-container>
