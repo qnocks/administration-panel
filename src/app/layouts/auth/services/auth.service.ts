@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginRequest } from '../models/login-request';
 import { BaseApiService } from '../../../core/services/base-api.service';
 import { TokenResponse } from '../models/token-response';
@@ -7,6 +7,9 @@ import { Endpoints } from '../../../core/constants/endpoints';
 import { Observable, tap } from 'rxjs';
 import { TokenStorageService } from './token-storage.service';
 import { LogoutRequest } from '../models/logout-request';
+import { RefreshTokenResponse } from '../models/refresh-token-response';
+import { RefreshTokenRequest } from '../models/refresh-token-request';
+import { Constants } from '../../../core/constants/constants';
 
 @Injectable()
 export class AuthService extends BaseApiService {
@@ -26,8 +29,8 @@ export class AuthService extends BaseApiService {
         tap({
           next: (token) => {
             this.tokenStorage.setToken(token);
-          }
-        })
+          },
+        }),
       );
   }
 
@@ -38,8 +41,20 @@ export class AuthService extends BaseApiService {
         tap({
           complete: () => {
             this.tokenStorage.removeToken();
-          }
-        })
+          },
+        }),
+      );
+  }
+
+  refreshToken(request: RefreshTokenRequest): Observable<RefreshTokenResponse> {
+    return super.post<RefreshTokenResponse>(Endpoints.AUTH.REFRESH, request, undefined,
+      new HttpHeaders().set(Constants.INTERCEPTOR_SKIP_HEADER, 'true'))
+      .pipe(
+        tap({
+          next: (token) => {
+            this.tokenStorage.setRefreshedToken(token);
+          },
+        }),
       );
   }
 

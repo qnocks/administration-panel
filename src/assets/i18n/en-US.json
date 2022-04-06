@@ -11,14 +11,12 @@
     },
     "button": "Login"
   },
-
   "notification": {
     "login": {
       "success": "Login successfully",
       "failure": "Error occurred. Cannot login"
     }
   },
-
   "error": {
     "http": {
       "bad_request": "You've sent a bad request",
@@ -34,8 +32,15 @@
       "button": "Back to homepage"
     }
   },
-
   "navbar": {
+    "title": "Administration Panel",
+    "home": "Home",
     "logout": "Logout"
+  },
+  "sidebar": {
+    "header": "Menu",
+    "logout": "Logout",
+    "home": "Home",
+    "transactions": "Transactions"
   }
 }

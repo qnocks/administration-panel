@@ -1,0 +1,32 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport="false"
+    [ngClass]="{hidden: (isHandset$ | async) === false}">
+    <mat-toolbar>{{ 'sidebar.header' | translate }}</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item (click)="redirectToHome()">{{ 'sidebar.home' | translate }}</a>
+      <a mat-list-item (click)="redirectToTransactions()">{{ 'sidebar.transactions' | translate }}</a>
+      <a mat-list-item (click)="logout()">{{ 'sidebar.logout' | translate }}</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>
+        <button mat-button (click)="redirectToHome()" class="toolbar-title">{{ 'navbar.title' | translate }}</button>
+      </span>
+      <span class="spacer"></span>
+      <div *ngIf="(isHandset$ | async) === false">
+        <button mat-button (click)="logout()">{{ 'navbar.logout' | translate }}</button>
+      </div>
+    </mat-toolbar>
+  </mat-sidenav-content>
+</mat-sidenav-container>
