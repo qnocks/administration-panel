@@ -9,7 +9,7 @@ class NotifierKey {
 }
 
 class I18n {
-  static readonly DEFAULT_LANGUAGE_CODE = 'en-Us';
+  static readonly DEFAULT_LANGUAGE_CODE = 'en-US';
   static readonly LANGUAGES = [
     {
       value: 'English',

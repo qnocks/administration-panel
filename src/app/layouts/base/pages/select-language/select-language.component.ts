@@ -23,12 +23,16 @@ export class SelectLanguageComponent implements OnInit {
       Constants.I18N.DEFAULT_LANGUAGE_CODE);
   }
 
-  onSelectLanguage(language: string) {
+  onSelectLanguage(language: string): void {
     this.storageService.setValue(Constants.TOKEN_STORAGE.LANGUAGE_KEY, language);
     this.translationService.use(language);
   }
 
   getCurrentLanguage(): string {
     return this.translationService.currentLang;
+  }
+
+  trackByLanguageCode(index: number, language: Language): string {
+    return language.code;
   }
 }

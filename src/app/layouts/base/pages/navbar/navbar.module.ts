@@ -14,17 +14,17 @@ import { SelectLanguageModule } from '../select-language/select-language.module'
   declarations: [
     NavbarComponent,
   ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatSidenavModule,
-        MatIconModule,
-        MatListModule,
-        I18nModule,
-        SelectLanguageModule,
-    ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    I18nModule,
+    SelectLanguageModule,
+  ],
   exports: [
     NavbarComponent,
   ],

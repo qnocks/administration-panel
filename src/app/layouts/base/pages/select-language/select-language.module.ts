@@ -23,4 +23,5 @@ import { MatIconModule } from '@angular/material/icon';
     SelectLanguageComponent,
   ],
 })
-export class SelectLanguageModule { }
+export class SelectLanguageModule {
+}
