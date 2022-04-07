@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../../auth/guards/auth.guard';
 import { TransactionLayoutComponent } from './transaction-layout.component';
-import { TransactionDashboardModule } from './transaction-dashboard/transaction-dashboard.module';
+import { TransactionTableModule } from './transaction-table/transaction-table.module';
 
 const routes: Routes = [
   {
@@ -12,9 +12,9 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: (): Promise<TransactionDashboardModule> =>
-          import('src/app/layouts/transaction/pages/transaction-dashboard/transaction-dashboard.module')
-            .then((m) => m.TransactionDashboardModule),
+        loadChildren: (): Promise<TransactionTableModule> =>
+          import('src/app/layouts/transaction/pages/transaction-table/transaction-table.module')
+            .then((m) => m.TransactionTableModule),
       },
     ],
   },
