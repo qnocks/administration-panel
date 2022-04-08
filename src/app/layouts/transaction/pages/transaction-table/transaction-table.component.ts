@@ -1,25 +1,25 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { Transaction } from '../../models/transaction';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { TransactionService } from '../../services/transaction.service';
+import { Constants } from '../../../../core/constants/constants';
 
 @Component({
   selector: 'psap-transaction-dashboard',
   templateUrl: './transaction-table.component.html',
   styleUrls: ['./transaction-table.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TransactionTableComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'externalId', 'provider', 'status', 'amount', 'currency', 'user'];
+  displayedColumns: string[] = Constants.TRANSACTION.TABLE_COLUMNS;
   dataSource: MatTableDataSource<Transaction>;
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
-  constructor(private transactionService: TransactionService,
-              private cdr: ChangeDetectorRef) {
+  constructor(private transactionService: TransactionService) {
   }
 
   ngOnInit(): void {
@@ -28,11 +28,11 @@ export class TransactionTableComponent implements OnInit {
         this.dataSource = new MatTableDataSource<Transaction>(transactions);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-      }
+      },
     });
   }
 
-  filterTransaction($event: Event) {
+  filterTransaction($event: Event): void {
     const target = $event.target as HTMLInputElement;
     this.dataSource.filter = target.value;
   }

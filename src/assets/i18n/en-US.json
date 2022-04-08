@@ -42,5 +42,21 @@
     "logout": "Logout",
     "home": "Home",
     "transactions": "Transactions"
+  },
+  "transactions": {
+    "table": {
+      "search": "Search",
+      "columns": {
+        "id": "ID",
+        "externalId": "External ID",
+        "provider": "Provider",
+        "status": "Status",
+        "amount": "Amount",
+        "currency": "Currency",
+        "commissionAmount": "Commission amount",
+        "commissionCurrency": "Commission currency",
+        "user": "User ID"
+      }
+    }
   }
 }

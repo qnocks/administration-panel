@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Routing } from '../../../../core/constants/routing';
 
 @Component({
   selector: 'psap-home-page',
@@ -12,7 +13,7 @@ export class HomePageComponent {
   constructor(private router: Router) {
   }
 
-  redirectToTransactions() {
-    this.router.navigate(['/transactions']);
+  redirectToTransactions(): void {
+    this.router.navigate([Routing.TRANSACTION.BASE]);
   }
 }

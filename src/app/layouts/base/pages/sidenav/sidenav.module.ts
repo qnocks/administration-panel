@@ -5,8 +5,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { I18nModule } from '../../../../shared/i18n/i18n.module';
-
-
+import { NavigationService } from '../../services/navigation.service';
 
 @NgModule({
   declarations: [
@@ -19,8 +18,12 @@ import { I18nModule } from '../../../../shared/i18n/i18n.module';
     MatListModule,
     I18nModule,
   ],
+  providers: [
+    NavigationService,
+  ],
   exports: [
     SidenavComponent,
   ],
 })
-export class SidenavModule { }
+export class SidenavModule {
+}

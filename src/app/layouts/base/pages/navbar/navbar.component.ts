@@ -2,9 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { AuthService } from '../../../auth/services/auth.service';
-import { Routing } from '../../../../core/constants/routing';
-import { Router } from '@angular/router';
+import { NavigationService } from '../../services/navigation.service';
 
 @Component({
   selector: 'psap-navbar',
@@ -20,26 +18,18 @@ export class NavbarComponent {
     );
 
   constructor(private breakpointObserver: BreakpointObserver,
-              private authService: AuthService,
-              private router: Router) {
+              private navigationService: NavigationService) {
   }
 
-  // TODO: move the logic to separate file
   redirectToHome(): void {
-    this.router.navigate([Routing.HOME.BASE]);
+    this.navigationService.redirectToHome();
   }
 
-  // TODO: move the logic to separate file
   redirectToTransactions(): void {
-    this.router.navigate([Routing.TRANSACTION.BASE]);
+    this.navigationService.redirectToTransactions();
   }
 
-  // TODO: move the logic to separate file
   logout(): void {
-    this.authService.logout().subscribe({
-      next: () => {
-        this.router.navigate([Routing.AUTH.BASE]);
-      },
-    });
+    this.navigationService.logout();
   }
 }

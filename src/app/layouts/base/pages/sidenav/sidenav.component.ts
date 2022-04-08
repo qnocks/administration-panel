@@ -1,10 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map, shareReplay } from 'rxjs/operators';
-import { AuthService } from '../../../auth/services/auth.service';
-import { Router } from '@angular/router';
-import { Routing } from '../../../../core/constants/routing';
+import { NavigationService } from '../../services/navigation.service';
 
 @Component({
   selector: 'psap-sidenav',
@@ -20,26 +18,18 @@ export class SidenavComponent {
     );
 
   constructor(private breakpointObserver: BreakpointObserver,
-              private authService: AuthService,
-              private router: Router) {
+              private navigationService: NavigationService) {
   }
 
-  // TODO: move the logic to separate file
   redirectToHome(): void {
-    this.router.navigate([Routing.HOME.BASE]);
+    this.navigationService.redirectToHome();
   }
 
-  // TODO: move the logic to separate file
   redirectToTransactions(): void {
-    this.router.navigate([Routing.TRANSACTION.BASE]);
+    this.navigationService.redirectToTransactions();
   }
 
-  // TODO: move the logic to separate file
   logout(): void {
-    this.authService.logout().subscribe({
-      next: () => {
-        this.router.navigate([Routing.AUTH.BASE]);
-      },
-    });
+    this.navigationService.logout();
   }
 }

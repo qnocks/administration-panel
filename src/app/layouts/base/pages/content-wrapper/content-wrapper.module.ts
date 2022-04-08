@@ -23,4 +23,5 @@ import { MatIconModule } from '@angular/material/icon';
     ContentWrapperComponent,
   ],
 })
-export class ContentWrapperModule { }
+export class ContentWrapperModule {
+}

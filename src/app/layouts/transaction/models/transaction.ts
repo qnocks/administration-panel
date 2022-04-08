@@ -5,8 +5,8 @@ export interface Transaction {
   externalId: string;
   provider: string;
   status: string;
-  amount?: TransactionAmount;
-  commissionAmount?: TransactionAmount;
+  amount: TransactionAmount;
+  commissionAmount: TransactionAmount;
   user: string;
   timestamp?: number;
   providerTimestamp?: number;
