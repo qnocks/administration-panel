@@ -13,7 +13,7 @@ import { MatInputModule } from '@angular/material/input';
     TransactionTableComponent,
   ],
   imports: [
-    RouterModule.forChild([{path: '', component: TransactionTableComponent}]),
+    RouterModule.forChild([{ path: '', component: TransactionTableComponent }]),
     CommonModule,
     MatTableModule,
     MatPaginatorModule,

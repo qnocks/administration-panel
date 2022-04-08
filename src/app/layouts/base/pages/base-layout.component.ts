@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'psap-base-layout',
-  templateUrl: './base-layout.component.html',
+  template: `<router-outlet></router-outlet>`,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BaseLayoutComponent {

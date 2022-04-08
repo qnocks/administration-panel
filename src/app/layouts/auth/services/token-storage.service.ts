@@ -8,7 +8,6 @@ import { RefreshTokenResponse } from '../models/refresh-token-response';
   providedIn: 'root'
 })
 export class TokenStorageService {
-  tokenType: string;
 
   constructor(private storageService: StorageService) {
   }
@@ -19,7 +18,6 @@ export class TokenStorageService {
 
   setToken(tokenResponse: TokenResponse): void {
     this.storageService.setValue(Constants.TOKEN_STORAGE.USER_KEY, JSON.stringify(tokenResponse));
-    this.tokenType = tokenResponse.type;
   }
 
   getUser(): TokenResponse {
