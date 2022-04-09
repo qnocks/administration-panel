@@ -4,7 +4,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map, shareReplay } from 'rxjs/operators';
 
 @Component({
-  selector: 'psap-content',
+  selector: 'psap-content-wrapper',
   templateUrl: './content-wrapper.component.html',
   styleUrls: ['./content-wrapper.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,

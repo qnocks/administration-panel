@@ -23,7 +23,6 @@ class Transaction {
     'commissionCurrency',
     'user'
   ];
-
 }
 
 export class Constants {

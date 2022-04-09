@@ -44,5 +44,21 @@
     "logout": "Logout",
     "home": "Startseite",
     "transactions": "Transaktionen"
+  },
+  "transactions": {
+    "table": {
+      "search": "Suche",
+      "columns": {
+        "id": "ID",
+        "externalId": "Externen ID",
+        "provider": "Anbieter",
+        "status": "Status",
+        "amount": "Menge",
+        "currency": "Währung",
+        "commissionAmount": "Provisionsbetrag",
+        "commissionCurrency": "Provisionswährung",
+        "user": "Benutzer ID"
+      }
+    }
   }
 }

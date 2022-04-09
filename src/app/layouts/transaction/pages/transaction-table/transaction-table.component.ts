@@ -32,8 +32,8 @@ export class TransactionTableComponent implements OnInit {
     });
   }
 
-  filterTransaction($event: Event): void {
-    const target = $event.target as HTMLInputElement;
+  filterTransaction(event: Event): void {
+    const target = event.target as HTMLInputElement;
     this.dataSource.filter = target.value;
   }
 }
