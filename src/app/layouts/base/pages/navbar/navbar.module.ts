@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { I18nModule } from '../../../../shared/i18n/i18n.module';
+import { SelectLanguageModule } from '../select-language/select-language.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { I18nModule } from '../../../../shared/i18n/i18n.module';
     MatIconModule,
     MatListModule,
     I18nModule,
+    SelectLanguageModule,
   ],
   exports: [
     NavbarComponent,
