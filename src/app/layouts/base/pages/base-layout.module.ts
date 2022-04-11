@@ -11,6 +11,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { SidenavModule } from './sidenav/sidenav.module';
+import { TransactionService } from '../services/transaction.service';
+import { RouterModule } from '@angular/router';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { I18nModule } from '../../../shared/i18n/i18n.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +36,9 @@ import { SidenavModule } from './sidenav/sidenav.module';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+  ],
+  providers: [
+    TransactionService,
   ],
   exports: [
     BaseLayoutComponent,

@@ -6,7 +6,9 @@ import { AuthGuard } from '../../auth/guards/auth.guard';
 import { AuthLayoutModule } from '../../auth/pages/auth-layout.module';
 import { Routing } from '../../../core/constants/routing';
 import { ErrorLayoutModule } from '../../error/pages/error-layout.module';
-import { TransactionLayoutModule } from '../../transaction/pages/transaction-layout.module';
+import { TransactionTableModule } from './transaction-table/transaction-table.module';
+import { TransactionTableComponent } from './transaction-table/transaction-table.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 const routes: Routes = [
   {
@@ -38,9 +40,16 @@ const routes: Routes = [
   },
   {
     path: Routing.TRANSACTION.BASE,
-    loadChildren: (): Promise<TransactionLayoutModule> =>
-      import('src/app/layouts/transaction/pages/transaction-layout.module').then((m) => m.TransactionLayoutModule),
-  },
+    component: BaseLayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        loadChildren: (): Promise<TransactionTableModule> =>
+          import('src/app/layouts/base/pages/transaction-table/transaction-table.module').then((m) => m.TransactionTableModule)
+      }
+    ]
+  }
 ];
 
 @NgModule({

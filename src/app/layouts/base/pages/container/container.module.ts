@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ContentWrapperComponent } from './content-wrapper.component';
+import { ContainerComponent } from './container.component';
 import { SidenavModule } from '../sidenav/sidenav.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NavbarModule } from '../navbar/navbar.module';
@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
-    ContentWrapperComponent,
+    ContainerComponent,
   ],
   imports: [
     CommonModule,
@@ -20,8 +20,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
   ],
   exports: [
-    ContentWrapperComponent,
+    ContainerComponent,
   ],
 })
-export class ContentWrapperModule {
+export class ContainerModule {
 }

@@ -4,12 +4,12 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map, shareReplay } from 'rxjs/operators';
 
 @Component({
-  selector: 'psap-content-wrapper',
-  templateUrl: './content-wrapper.component.html',
-  styleUrls: ['./content-wrapper.component.css'],
+  selector: 'psap-container',
+  templateUrl: './container.component.html',
+  styleUrls: ['./container.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContentWrapperComponent {
+export class ContainerComponent {
   isHandset$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.HandsetPortrait])
     .pipe(
       map(result => result.matches),

@@ -13,7 +13,8 @@ import { Constants } from '../../../../core/constants/constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TransactionTableComponent implements OnInit {
-  displayedColumns: string[] = Constants.TRANSACTION.TABLE_COLUMNS;
+  readonly displayedColumns: string[] = Constants.TRANSACTION.TABLE_COLUMNS;
+  transactionsTotalCount: number;
   dataSource: MatTableDataSource<Transaction>;
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
@@ -28,6 +29,7 @@ export class TransactionTableComponent implements OnInit {
         this.dataSource = new MatTableDataSource<Transaction>(transactions);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.transactionsTotalCount = this.dataSource.data.length;
       },
     });
   }
