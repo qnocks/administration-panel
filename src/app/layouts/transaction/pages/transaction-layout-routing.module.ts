@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../../auth/guards/auth.guard';
 import { TransactionLayoutComponent } from './transaction-layout.component';
-import { TransactionTableModule } from './transaction-table/transaction-table.module';
+import { TransactionsTableModule } from './transactions-table/transactions-table.module';
+import { TransactionPageModule } from './transaction-page/transaction-page.module';
+import { TransactionPageComponent } from './transaction-page/transaction-page.component';
 
 const routes: Routes = [
   {
@@ -12,9 +14,13 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: (): Promise<TransactionTableModule> =>
-          import('src/app/layouts/transaction/pages/transaction-table/transaction-table.module')
-            .then((m) => m.TransactionTableModule),
+        loadChildren: (): Promise<TransactionsTableModule> =>
+          import('src/app/layouts/transaction/pages/transactions-table/transactions-table.module')
+            .then((m) => m.TransactionsTableModule),
+      },
+      {
+        path: ':id',
+        component: TransactionPageComponent
       },
     ],
   },

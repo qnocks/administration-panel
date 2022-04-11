@@ -1,0 +1,33 @@
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="transactionForm">
+      <h2>Transaction</h2>
+      <div>
+        <mat-form-field>
+          <input
+            matInput name="id"
+            placeholder="{{ 'transactions.table.columns.id' | translate }}"
+            value=""
+            formControlName="id"
+            required>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput name="externalId"
+            placeholder="{{ 'transactions.table.columns.externalId' | translate }}"
+            value=""
+            formControlName="externalId"
+            required>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput name="provider"
+            placeholder="{{ 'transactions.table.columns.provider' | translate }}"
+            value=""
+            formControlName="provider"
+            required>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
