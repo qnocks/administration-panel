@@ -11,7 +11,7 @@ import { Constants } from '../../../../core/constants/constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectLanguageComponent implements OnInit {
-  languages: Language[] = Constants.I18N.LANGUAGES;
+  readonly languages: Language[] = Constants.I18N.LANGUAGES;
 
   constructor(private translationService: TranslateService,
               private storageService: StorageService) {
@@ -30,9 +30,5 @@ export class SelectLanguageComponent implements OnInit {
 
   getCurrentLanguage(): string {
     return this.translationService.currentLang;
-  }
-
-  trackByLanguageCode(index: number, language: Language): string {
-    return language.code;
   }
 }

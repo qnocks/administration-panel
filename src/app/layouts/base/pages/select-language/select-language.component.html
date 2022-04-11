@@ -1,3 +1,3 @@
 <mat-select #langSelect [value]="getCurrentLanguage()" (selectionChange)="onSelectLanguage(langSelect.value)">
-  <mat-option *ngFor="let language of languages; trackBy: trackByLanguageCode" [value]="language.code">{{ language.value }}</mat-option>
+  <mat-option *ngFor="let language of languages" [value]="language.code">{{ language.value }}</mat-option>
 </mat-select>
