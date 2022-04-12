@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { NavigationService } from '../../services/navigation.service';
 import { SelectLanguageModule } from '../select-language/select-language.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { I18nModule } from '../../../../shared/i18n/i18n.module';
 
 @NgModule({
   declarations: [
@@ -23,9 +24,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    // I18nModule,
+    I18nModule,
     SelectLanguageModule,
-    TranslateModule,
   ],
   providers: [
     NavigationService,

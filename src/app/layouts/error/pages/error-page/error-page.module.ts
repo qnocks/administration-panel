@@ -1,20 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ErrorLayoutComponent } from '../error-layout.component';
 import { RouterModule } from '@angular/router';
 import { ErrorPageComponent } from './error-page.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { I18nModule } from '../../../../shared/i18n/i18n.module';
 
 @NgModule({
   declarations: [
-    ErrorLayoutComponent,
+    ErrorPageComponent,
   ],
   imports: [
     RouterModule.forChild([{ path: '', component: ErrorPageComponent }]),
     CommonModule,
-    // I18nModule,
+    MatCardModule,
+    MatButtonModule,
+    I18nModule,
   ],
   exports: [
-    ErrorLayoutComponent,
+    ErrorPageComponent,
   ],
 })
 export class ErrorPageModule {

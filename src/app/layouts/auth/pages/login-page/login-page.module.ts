@@ -7,22 +7,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { I18nModule } from '../../../../shared/i18n/i18n.module';
 
 @NgModule({
   declarations: [
     LoginPageComponent,
   ],
   imports: [
-    RouterModule.forChild([{path: '', component: LoginPageComponent}]),
+    RouterModule.forChild([{ path: '', component: LoginPageComponent }]),
     CommonModule,
     MatCardModule,
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    TranslateModule,
-    // I18nModule,
+    I18nModule,
   ],
   exports: [
     LoginPageComponent,

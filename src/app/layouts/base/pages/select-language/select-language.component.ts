@@ -29,6 +29,6 @@ export class SelectLanguageComponent implements OnInit {
   }
 
   getCurrentLanguage(): string {
-    return this.storageService.getValue(Constants.TOKEN_STORAGE.LANGUAGE_KEY) || Constants.I18N.DEFAULT_LANGUAGE_CODE
+    return this.storageService.getValue(Constants.TOKEN_STORAGE.LANGUAGE_KEY) || Constants.I18N.DEFAULT_LANGUAGE_CODE;
   }
 }

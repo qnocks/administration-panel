@@ -71,7 +71,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
   private handleUnauthorizedStatus(): void {
     const refreshToken = this.tokenStorageService.getUser().refreshToken;
-    this.authService.refreshToken({refreshToken: refreshToken}).subscribe({
+    this.authService.refreshToken({ refreshToken: refreshToken }).subscribe({
       error: () => {
         this.authService.logout().subscribe({
           next: () => {
@@ -85,7 +85,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   }
 
   private redirectToErrorPage(statusCode: number): void {
-    this.router.navigate([Constants.NOTIFIER_KEY.ERROR], {queryParams: {statusCode: statusCode}});
+    this.router.navigate([Constants.NOTIFIER_KEY.ERROR], { queryParams: { statusCode: statusCode } });
   }
 
   private handleInternalServerError(): void {
@@ -98,7 +98,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
       this.translateService.instant('error.http.unknown'));
   }
 
-  private injectTransactionService() {
+  private injectTransactionService(): void {
     try {
       this.translateService = this.injector.get(TranslateService);
     } catch {
