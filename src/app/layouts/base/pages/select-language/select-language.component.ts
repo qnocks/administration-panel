@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { StorageService } from '../../../../core/services/storage.service';
 import { Language } from '../../models/language';
 import { Constants } from '../../../../core/constants/constants';
+import { StorageService } from '../../../../core/services/storage.service';
 
 @Component({
   selector: 'psap-select-language',
@@ -25,7 +25,10 @@ export class SelectLanguageComponent implements OnInit {
 
   onSelectLanguage(language: string): void {
     this.storageService.setValue(Constants.TOKEN_STORAGE.LANGUAGE_KEY, language);
-    this.translationService.use(language);
+    this.translationService.use(language).subscribe(() => {
+      console.log('IN translationService.use() sub');
+      console.log(this.translationService.currentLang);
+    });
   }
 
   getCurrentLanguage(): string {

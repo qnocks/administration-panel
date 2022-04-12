@@ -18,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatSelectModule,
     MatMenuModule,
     MatIconModule,
+
   ],
   exports: [
     SelectLanguageComponent,
