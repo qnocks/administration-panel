@@ -1,9 +1,13 @@
 <mat-toolbar color="primary">
   <ng-content></ng-content>
-  <span>
-    <button mat-button (click)="redirectToHome()" class="toolbar-title">{{ 'navbar.title' | translate }}</button>
-  </span>
+  <div *ngIf="(isHandset$ | async) === false">
+    <span>
+      <button mat-button (click)="redirectToHome()" class="toolbar-title">{{ 'navbar.title' | translate }}</button>
+    </span>
+  </div>
   <span class="spacer"></span>
+  <mat-icon>language</mat-icon>
+  <psap-select-language></psap-select-language>
   <div *ngIf="(isHandset$ | async) === false">
     <button mat-button (click)="logout()">{{ 'navbar.logout' | translate }}</button>
   </div>

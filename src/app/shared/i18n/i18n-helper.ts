@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { Constants } from '../../core/constants/constants';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class I18nHelper {
 
   constructor(private translateService: TranslateService) {

@@ -5,7 +5,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { ErrorLayoutRoutingModule } from './error-layout-routing.module';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { I18nModule } from '../../../shared/i18n/i18n.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,8 @@ import { I18nModule } from '../../../shared/i18n/i18n.module';
     AuthLayoutModule,
     MatCardModule,
     MatButtonModule,
-    I18nModule,
+    TranslateModule,
+    // I18nModule,
   ],
   exports: [
     ErrorPageComponent,

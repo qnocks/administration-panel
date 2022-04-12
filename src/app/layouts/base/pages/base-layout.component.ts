@@ -7,6 +7,4 @@ import { TranslateService } from '@ngx-translate/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BaseLayoutComponent {
-  constructor(private translateService: TranslateService) {
-  }
 }

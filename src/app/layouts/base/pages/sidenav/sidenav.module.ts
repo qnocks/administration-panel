@@ -4,8 +4,8 @@ import { SidenavComponent } from './sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
-import { I18nModule } from '../../../../shared/i18n/i18n.module';
 import { NavigationService } from '../../services/navigation.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,8 @@ import { NavigationService } from '../../services/navigation.service';
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
-    I18nModule,
+    TranslateModule,
+    // I18nModule,
   ],
   providers: [
     NavigationService,

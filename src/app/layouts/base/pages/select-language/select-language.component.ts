@@ -25,13 +25,10 @@ export class SelectLanguageComponent implements OnInit {
 
   onSelectLanguage(language: string): void {
     this.storageService.setValue(Constants.TOKEN_STORAGE.LANGUAGE_KEY, language);
-    this.translationService.use(language).subscribe(() => {
-      console.log('IN translationService.use() sub');
-      console.log(this.translationService.currentLang);
-    });
+    this.translationService.use(language);
   }
 
   getCurrentLanguage(): string {
-    return this.translationService.currentLang;
+    return this.storageService.getValue(Constants.TOKEN_STORAGE.LANGUAGE_KEY) || Constants.I18N.DEFAULT_LANGUAGE_CODE
   }
 }

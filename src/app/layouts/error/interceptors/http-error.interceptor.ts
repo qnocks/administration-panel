@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpStatusCode } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { NotifierService } from 'angular-notifier';
@@ -11,15 +11,18 @@ import { Routing } from '../../../core/constants/routing';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
+  translateService: TranslateService;
 
   constructor(private notifierService: NotifierService,
               private authService: AuthService,
               private tokenStorageService: TokenStorageService,
-              private translateService: TranslateService,
-              private router: Router) {
+              private router: Router,
+              private injector: Injector) {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    this.injectTransactionService();
+
     if (request.headers.get(Constants.INTERCEPTOR_SKIP_HEADER)) {
       request = request.clone({
         headers: request.headers.delete(Constants.INTERCEPTOR_SKIP_HEADER),
@@ -68,7 +71,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
   private handleUnauthorizedStatus(): void {
     const refreshToken = this.tokenStorageService.getUser().refreshToken;
-    this.authService.refreshToken({ refreshToken: refreshToken }).subscribe({
+    this.authService.refreshToken({refreshToken: refreshToken}).subscribe({
       error: () => {
         this.authService.logout().subscribe({
           next: () => {
@@ -82,7 +85,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   }
 
   private redirectToErrorPage(statusCode: number): void {
-    this.router.navigate([Constants.NOTIFIER_KEY.ERROR], { queryParams: { statusCode: statusCode } });
+    this.router.navigate([Constants.NOTIFIER_KEY.ERROR], {queryParams: {statusCode: statusCode}});
   }
 
   private handleInternalServerError(): void {
@@ -93,5 +96,13 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   private handleUnknownError(): void {
     this.notifierService.notify(Constants.NOTIFIER_KEY.ERROR,
       this.translateService.instant('error.http.unknown'));
+  }
+
+  private injectTransactionService() {
+    try {
+      this.translateService = this.injector.get(TranslateService);
+    } catch {
+      console.log('TranslateService is not yet available');
+    }
   }
 }
