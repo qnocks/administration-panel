@@ -8,7 +8,7 @@ class Auth {
 }
 
 class Transaction {
-  static readonly BASE = `${environment.baseApiUrl}/admin/transactions?pageSize=10000`;
+  static readonly BASE = `${environment.baseApiUrl}/admin/transactions`;
 }
 
 export class Endpoints {

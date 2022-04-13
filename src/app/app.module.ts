@@ -17,6 +17,7 @@ import { NavbarModule } from './layouts/base/pages/navbar/navbar.module';
 import { ContainerModule } from './layouts/base/pages/container/container.module';
 import { I18nLoader } from './shared/i18n/i18n-loader';
 import { Constants } from './core/constants/constants';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { Constants } from './core/constants/constants';
     LayoutModule,
     NavbarModule,
     ContainerModule,
+    MatDialogModule,
   ],
   providers: [
     {

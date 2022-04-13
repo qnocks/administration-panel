@@ -5,6 +5,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { TransactionService } from '../../services/transaction.service';
 import { Constants } from '../../../../core/constants/constants';
+import { MatDialog } from '@angular/material/dialog';
+import { TransactionDetailsComponent } from '../transaction-details/transaction-details.component';
 
 @Component({
   selector: 'psap-transaction-dashboard',
@@ -17,13 +19,35 @@ export class TransactionTableComponent implements OnInit {
   transactionsTotalCount: number;
   dataSource: MatTableDataSource<Transaction>;
 
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
-  constructor(private transactionService: TransactionService) {
+  constructor(private transactionService: TransactionService,
+              private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
+    this.loadTransactions();
+  }
+
+  filterTransaction(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    this.dataSource.filter = target.value;
+  }
+
+  openTransactionDetailsDialog(transaction: Transaction) {
+    console.log(transaction);
+    this.dialog.open(TransactionDetailsComponent, {data: transaction}).afterClosed()
+      .subscribe(isUpdated => {
+        console.log('isUpdated');
+        console.log(isUpdated);
+        if (isUpdated) {
+          this.loadTransactions();
+        }
+      });
+  }
+
+  private loadTransactions(): void {
     this.transactionService.getAll().subscribe({
       next: (transactions) => {
         this.dataSource = new MatTableDataSource<Transaction>(transactions);
@@ -32,10 +56,5 @@ export class TransactionTableComponent implements OnInit {
         this.transactionsTotalCount = this.dataSource.data.length;
       },
     });
-  }
-
-  filterTransaction(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    this.dataSource.filter = target.value;
   }
 }

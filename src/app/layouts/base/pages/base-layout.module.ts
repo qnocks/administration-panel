@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { SidenavModule } from './sidenav/sidenav.module';
 import { TransactionService } from '../services/transaction.service';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { TransactionService } from '../services/transaction.service';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatDialogModule,
   ],
   providers: [
     TransactionService,
