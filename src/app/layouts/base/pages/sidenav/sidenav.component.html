@@ -1,0 +1,6 @@
+<mat-toolbar>{{ 'sidebar.header' | translate }}</mat-toolbar>
+<mat-nav-list>
+  <a mat-list-item (click)="redirectToHome()">{{ 'sidebar.home' | translate }}</a>
+  <a mat-list-item (click)="redirectToTransactions()">{{ 'sidebar.transactions' | translate }}</a>
+  <a mat-list-item (click)="logout()">{{ 'sidebar.logout' | translate }}</a>
+</mat-nav-list>

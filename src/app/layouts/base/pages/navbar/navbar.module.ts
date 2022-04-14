@@ -7,8 +7,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
-import { I18nModule } from '../../../../shared/i18n/i18n.module';
+import { NavigationService } from '../../services/navigation.service';
 import { SelectLanguageModule } from '../select-language/select-language.module';
+import { TranslateModule } from '@ngx-translate/core';
+import { I18nModule } from '../../../../shared/i18n/i18n.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,9 @@ import { SelectLanguageModule } from '../select-language/select-language.module'
     MatListModule,
     I18nModule,
     SelectLanguageModule,
+  ],
+  providers: [
+    NavigationService,
   ],
   exports: [
     NavbarComponent,

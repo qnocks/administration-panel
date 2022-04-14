@@ -7,6 +7,11 @@ class Auth {
   static readonly REFRESH = `${environment.baseApiUrl}/${Auth.BASE}/refresh`;
 }
 
+class Transaction {
+  static readonly BASE = `${environment.baseApiUrl}/admin/transactions?pageSize=10000`;
+}
+
 export class Endpoints {
   static readonly AUTH = Auth;
+  static readonly TRANSACTION = Transaction;
 }

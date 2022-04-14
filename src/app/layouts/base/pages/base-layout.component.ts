@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'psap-home-layout',
-  templateUrl: './base-layout.component.html',
+  selector: 'psap-base-layout',
+  template: `<router-outlet></router-outlet>`,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BaseLayoutComponent {
