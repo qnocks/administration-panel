@@ -43,26 +43,27 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   }
 
   private handle(error: HttpErrorResponse): void {
-    switch (error.status) {
-      case HttpStatusCode.BadRequest:
-        this.handleBadRequestStatus(error);
-        break;
-      case HttpStatusCode.Unauthorized:
-        this.handleUnauthorizedStatus();
-        break;
-      case HttpStatusCode.Forbidden:
-        this.redirectToErrorPage(error.status);
-        break;
-      case HttpStatusCode.NotFound:
-        this.redirectToErrorPage(error.status);
-        break;
-      case HttpStatusCode.InternalServerError:
-        this.handleInternalServerError();
-        break;
-      default:
-        this.handleUnknownError();
-        break;
-    }
+    this.notifierService.notify(Constants.NOTIFIER_KEY.ERROR, error.error.message);
+    // switch (error.status) {
+    //   case HttpStatusCode.BadRequest:
+    //     this.handleBadRequestStatus(error);
+    //     break;
+    //   case HttpStatusCode.Unauthorized:
+    //     this.handleUnauthorizedStatus();
+    //     break;
+    //   case HttpStatusCode.Forbidden:
+    //     this.redirectToErrorPage(error.status);
+    //     break;
+    //   case HttpStatusCode.NotFound:
+    //     this.redirectToErrorPage(error.status);
+    //     break;
+    //   case HttpStatusCode.InternalServerError:
+    //     this.handleInternalServerError();
+    //     break;
+    //   default:
+    //     this.handleUnknownError();
+    //     break;
+    // }
   }
 
   private handleBadRequestStatus(error: HttpErrorResponse): void {

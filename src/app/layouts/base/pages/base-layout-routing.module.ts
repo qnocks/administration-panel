@@ -7,8 +7,6 @@ import { AuthLayoutModule } from '../../auth/pages/auth-layout.module';
 import { Routing } from '../../../core/constants/routing';
 import { ErrorLayoutModule } from '../../error/pages/error-layout.module';
 import { TransactionTableModule } from './transaction-table/transaction-table.module';
-import { TransactionTableComponent } from './transaction-table/transaction-table.component';
-import { HomePageComponent } from './home-page/home-page.component';
 
 const routes: Routes = [
   {
@@ -49,7 +47,12 @@ const routes: Routes = [
           import('src/app/layouts/base/pages/transaction-table/transaction-table.module').then((m) => m.TransactionTableModule)
       }
     ]
-  }
+  },
+  {
+    path: '**',
+    redirectTo: Routing.ERROR,
+    pathMatch: 'full'
+  },
 ];
 
 @NgModule({
