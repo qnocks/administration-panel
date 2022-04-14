@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Transaction } from '../../models/transaction';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TransactionService } from '../../services/transaction.service';
@@ -14,41 +14,79 @@ export class TransactionDetailsComponent implements OnInit {
   transaction: Transaction;
   transactionForm: FormGroup;
 
-  constructor(@Inject(MAT_DIALOG_DATA) private data: Transaction,
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               private transactionService: TransactionService,
-              public dialogRef: MatDialogRef<TransactionDetailsComponent>) {
-    this.transaction = data;
-    console.log(this.transaction);
+              private dialogRef: MatDialogRef<TransactionDetailsComponent>) {
+    this.transaction = data.transaction;
   }
 
   ngOnInit(): void {
-    // this.transactionForm = new FormGroup({
-    //   id: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    //   externalId: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    //   provider: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    //   status: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    //   amount: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    //   currency: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    //   commissionAmount: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    //   commissionCurrency: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    //   user: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    //   timestamp: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    //   providerTimestamp: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    //   additionalData: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    this.buildForm();
+    this.initForm();
+
+    // this.transactionForm = this.formBuilder.group({
+    //   id: [{value: '', disabled: true}],
+    //   externalId: [{value: '', disabled: true}],
+    //   provider: [{value: '', disabled: true}],
+    //   status: [''],
+    //   amount: [''],
+    //   currency: [''],
+    //   commissionAmount: [''],
+    //   commissionCurrency: [''],
+    //   user: [''],
+    //   timestamp: [{value: '', disabled: true}],
+    //   providerTimestamp: [{value: '', disabled: true}],
+    //   additionalData: [{value: '', disabled: true}],
     // });
   }
 
   complete() {
     console.log('BEFORE transactionService.complete');
-    this.transactionService.complete(this.transaction.externalId, this.transaction.provider).subscribe(res => {
+    this.transactionService.complete(this.transaction.externalId, this.transaction.provider).subscribe(() => {
       console.log('IN transactionService.complete');
       this.dialogRef.close(true);
     });
   }
 
   update() {
-    this.transactionService.update(this.transaction).subscribe(res => {
+    const updatedTransaction = this.transactionForm.getRawValue()
+    console.log(updatedTransaction);
+    this.transactionService.update(updatedTransaction).subscribe(() => {
       this.dialogRef.close(true);
+    });
+  }
+
+  private buildForm(): void {
+    this.transactionForm = new FormGroup({
+      id: new FormControl({ value: '', disabled: true }),
+      externalId: new FormControl({ value: '', disabled: true }),
+      provider: new FormControl({ value: '', disabled: true }),
+      status: new FormControl(''),
+      amount: new FormControl(''),
+      currency: new FormControl(''),
+      commissionAmount: new FormControl(''),
+      commissionCurrency: new FormControl(''),
+      user: new FormControl(''),
+      timestamp: new FormControl({ value: '', disabled: true }),
+      providerTimestamp: new FormControl({ value: '', disabled: true }),
+      additionalData: new FormControl(''),
+    });
+  }
+
+  private initForm(): void {
+    this.transactionForm.setValue({
+      id: this.transaction.id,
+      externalId: this.transaction.externalId,
+      provider: this.transaction.provider,
+      status: this.transaction.status,
+      amount: this.transaction.amount.amount,
+      currency: this.transaction.amount.currency,
+      commissionAmount: this.transaction.amount.currency,
+      commissionCurrency: this.transaction.amount.currency,
+      user: this.transaction.amount.currency,
+      timestamp: this.transaction.amount.currency,
+      providerTimestamp: this.transaction.amount.currency,
+      additionalData: this.transaction.amount.currency
     });
   }
 }

@@ -1,2 +1,100 @@
-<button (click)="complete()" mat-raised-button type="submit" color="primary">Complete</button>
-<button (click)="update()" mat-raised-button type="submit" color="primary">Update</button>
+<div class="card-wrapper">
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="transactionForm">
+        <div>
+          <mat-form-field>
+            <input
+              matInput
+              name="id"
+              placeholder="ID"
+              formControlName="id"
+              required>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput name="externalId"
+              placeholder="External ID"
+              formControlName="externalId"
+              value="{{transaction.externalId}}"
+              required>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput name="provider"
+              placeholder="Provider"
+              formControlName="provider"
+              required>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput name="status"
+              placeholder="Status"
+              formControlName="status"
+              required>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput name="amount"
+              placeholder="Amount"
+              formControlName="amount"
+              required>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput name="currency"
+              placeholder="Currency"
+              formControlName="currency"
+              required>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput name="commissionAmount"
+              placeholder="Commission amount"
+              formControlName="commissionAmount"
+              required>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput name="commissionCurrency"
+              placeholder="Commission currency"
+              formControlName="commissionCurrency"
+              required>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput name="user"
+              placeholder="User"
+              formControlName="user"
+              required>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput name="timestamp"
+              placeholder="Timestamp"
+              formControlName="timestamp"
+              required>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput name="providerTimestamp"
+              placeholder="Provider timestamp"
+              formControlName="providerTimestamp"
+              required>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput name="additionalData"
+              placeholder="Additional data"
+              formControlName="additionalData"
+              required>
+          </mat-form-field>
+        </div>
+        <div>
+          <button (click)="complete()" mat-raised-button type="submit" class="card-button" color="primary">Complete</button>
+          <button (click)="update()" mat-raised-button type="submit" class="card-button" color="primary">Update</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -29,6 +29,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
     HttpClientModule,
     TranslateModule.forRoot({
       defaultLanguage: Constants.I18N.DEFAULT_LANGUAGE_CODE,
@@ -44,7 +45,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     LayoutModule,
     NavbarModule,
     ContainerModule,
-    MatDialogModule,
   ],
   providers: [
     {

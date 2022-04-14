@@ -14,11 +14,31 @@ export class TransactionService extends BaseApiService {
   }
 
   getAll(): Observable<Transaction[]> {
-    return super.get(Endpoints.TRANSACTION.BASE + '?pageSize=10000');
+    return super.get(Endpoints.TRANSACTION.BASE + '?pageSize=10000&trace=true');
   }
 
   update(transaction: Transaction): Observable<Transaction> {
-    return super.put(Endpoints.TRANSACTION.BASE);
+    console.log('transaction');
+    console.log(JSON.stringify(transaction));
+
+    const body = {
+      id: transaction.id,
+      externalId: transaction.externalId,
+      provider: transaction.provider,
+      status: transaction.status,
+      amount: {
+        amount: transaction.amount.amount,
+        currency: transaction.amount.currency
+      },
+      commissionAmount: {
+        amount: transaction.commissionAmount.amount,
+        currency: transaction.commissionAmount.currency
+      },
+      user: transaction.user,
+      additionalData: transaction.additionalData
+    }
+
+    return super.put(Endpoints.TRANSACTION.BASE + '?trace=true', body);
   }
 
   complete(externalId: string, provider: string): Observable<Transaction> {

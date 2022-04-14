@@ -35,9 +35,9 @@ export class TransactionTableComponent implements OnInit {
     this.dataSource.filter = target.value;
   }
 
-  openTransactionDetailsDialog(transaction: Transaction) {
+  openTransactionDetailsDialog(transaction: Transaction): void {
     console.log(transaction);
-    this.dialog.open(TransactionDetailsComponent, {data: transaction}).afterClosed()
+    this.dialog.open(TransactionDetailsComponent, { data: { transaction } }).afterClosed()
       .subscribe(isUpdated => {
         console.log('isUpdated');
         console.log(isUpdated);
