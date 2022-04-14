@@ -45,7 +45,7 @@
     "home": "Startseite",
     "transactions": "Transaktionen"
   },
-  "c": {
+  "transactions": {
     "table": {
       "search": "Suche",
       "columns": {
