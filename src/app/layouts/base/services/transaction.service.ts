@@ -13,13 +13,10 @@ export class TransactionService extends BaseApiService {
   }
 
   getAll(): Observable<Transaction[]> {
-    return super.get(Endpoints.TRANSACTION.BASE + '?pageSize=10000&trace=true');
+    return super.get(Endpoints.TRANSACTION.BASE);
   }
 
   update(transaction: Transaction): Observable<Transaction> {
-    console.log('transaction');
-    console.log(JSON.stringify(transaction));
-
     const body = {
       id: transaction.id,
       externalId: transaction.externalId,
@@ -27,21 +24,22 @@ export class TransactionService extends BaseApiService {
       status: transaction.status,
       amount: {
         amount: transaction.amount.amount,
-        currency: transaction.amount.currency
+        currency: transaction.amount.currency,
       },
       commissionAmount: {
         amount: transaction.commissionAmount.amount,
-        currency: transaction.commissionAmount.currency
+        currency: transaction.commissionAmount.currency,
       },
       user: transaction.user,
-      additionalData: transaction.additionalData
+      additionalData: transaction.additionalData,
     };
 
-    return super.put(Endpoints.TRANSACTION.BASE + '?trace=true', body);
+    return super.put(Endpoints.TRANSACTION.BASE, body);
   }
 
   complete(externalId: string, provider: string): Observable<Transaction> {
-    const params = new HttpParams().set('external_id', externalId).set('provider', provider);
-    return super.post(Endpoints.TRANSACTION.BASE, null, params);
+    return super.post(Endpoints.TRANSACTION.BASE, null, new HttpParams()
+      .set('external_id', externalId)
+      .set('provider', provider));
   }
 }

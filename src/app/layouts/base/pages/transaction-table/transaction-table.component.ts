@@ -36,11 +36,8 @@ export class TransactionTableComponent implements OnInit {
   }
 
   openTransactionDetailsDialog(transaction: Transaction): void {
-    console.log(transaction);
     this.dialog.open(TransactionDetailsComponent, { data: { transaction } }).afterClosed()
       .subscribe(isUpdated => {
-        console.log('isUpdated');
-        console.log(isUpdated);
         if (isUpdated) {
           this.loadTransactions();
         }
