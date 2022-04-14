@@ -7,6 +7,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { I18nModule } from '../../../../shared/i18n/i18n.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MatInputModule } from '@angular/material/input';
     ReactiveFormsModule,
     MatInputModule,
     FormsModule,
+    I18nModule,
   ],
   exports: [
     TransactionDetailsComponent,

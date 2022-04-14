@@ -14,7 +14,7 @@ export class TransactionDetailsComponent implements OnInit {
   transaction: Transaction;
   transactionForm: FormGroup;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+  constructor(@Inject(MAT_DIALOG_DATA) private data: any,
               private transactionService: TransactionService,
               private dialogRef: MatDialogRef<TransactionDetailsComponent>) {
     this.transaction = data.transaction;
@@ -23,35 +23,16 @@ export class TransactionDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.buildForm();
     this.initForm();
-
-    // this.transactionForm = this.formBuilder.group({
-    //   id: [{value: '', disabled: true}],
-    //   externalId: [{value: '', disabled: true}],
-    //   provider: [{value: '', disabled: true}],
-    //   status: [''],
-    //   amount: [''],
-    //   currency: [''],
-    //   commissionAmount: [''],
-    //   commissionCurrency: [''],
-    //   user: [''],
-    //   timestamp: [{value: '', disabled: true}],
-    //   providerTimestamp: [{value: '', disabled: true}],
-    //   additionalData: [{value: '', disabled: true}],
-    // });
   }
 
-  complete() {
-    console.log('BEFORE transactionService.complete');
+  complete(): void {
     this.transactionService.complete(this.transaction.externalId, this.transaction.provider).subscribe(() => {
-      console.log('IN transactionService.complete');
       this.dialogRef.close(true);
     });
   }
 
-  update() {
-    const updatedTransaction = this.transactionForm.getRawValue()
-    console.log(updatedTransaction);
-    this.transactionService.update(updatedTransaction).subscribe(() => {
+  update(): void {
+    this.transactionService.update(this.transactionForm.getRawValue()).subscribe(() => {
       this.dialogRef.close(true);
     });
   }
@@ -81,12 +62,12 @@ export class TransactionDetailsComponent implements OnInit {
       status: this.transaction.status,
       amount: this.transaction.amount.amount,
       currency: this.transaction.amount.currency,
-      commissionAmount: this.transaction.amount.currency,
-      commissionCurrency: this.transaction.amount.currency,
-      user: this.transaction.amount.currency,
-      timestamp: this.transaction.amount.currency,
-      providerTimestamp: this.transaction.amount.currency,
-      additionalData: this.transaction.amount.currency
+      commissionAmount: this.transaction.commissionAmount.currency,
+      commissionCurrency: this.transaction.commissionAmount.currency,
+      user: this.transaction.user,
+      timestamp: this.transaction.timestamp,
+      providerTimestamp: this.transaction.providerTimestamp,
+      additionalData: this.transaction.additionalData
     });
   }
 }

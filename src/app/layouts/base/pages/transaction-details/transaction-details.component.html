@@ -7,92 +7,95 @@
             <input
               matInput
               name="id"
-              placeholder="ID"
+              placeholder="{{ 'transactions.table.columns.id' | translate }}"
               formControlName="id"
               required>
           </mat-form-field>
           <mat-form-field>
             <input
               matInput name="externalId"
-              placeholder="External ID"
+              placeholder="{{ 'transactions.table.columns.externalId' | translate }}"
               formControlName="externalId"
-              value="{{transaction.externalId}}"
               required>
           </mat-form-field>
           <mat-form-field>
             <input
               matInput name="provider"
-              placeholder="Provider"
+              placeholder="{{ 'transactions.table.columns.provider' | translate }}"
               formControlName="provider"
               required>
           </mat-form-field>
           <mat-form-field>
             <input
               matInput name="status"
-              placeholder="Status"
+              placeholder="{{ 'transactions.table.columns.status' | translate }}"
               formControlName="status"
               required>
           </mat-form-field>
           <mat-form-field>
             <input
               matInput name="amount"
-              placeholder="Amount"
+              placeholder="{{ 'transactions.table.columns.amount' | translate }}"
               formControlName="amount"
               required>
           </mat-form-field>
           <mat-form-field>
             <input
               matInput name="currency"
-              placeholder="Currency"
+              placeholder="{{ 'transactions.table.columns.currency' | translate }}"
               formControlName="currency"
               required>
           </mat-form-field>
           <mat-form-field>
             <input
               matInput name="commissionAmount"
-              placeholder="Commission amount"
+              placeholder="{{ 'transactions.table.columns.commissionAmount' | translate }}"
               formControlName="commissionAmount"
               required>
           </mat-form-field>
           <mat-form-field>
             <input
               matInput name="commissionCurrency"
-              placeholder="Commission currency"
+              placeholder="{{ 'transactions.table.columns.commissionCurrency' | translate }}"
               formControlName="commissionCurrency"
               required>
           </mat-form-field>
           <mat-form-field>
             <input
               matInput name="user"
-              placeholder="User"
+              placeholder="{{ 'transactions.table.columns.user' | translate }}"
               formControlName="user"
               required>
           </mat-form-field>
           <mat-form-field>
             <input
               matInput name="timestamp"
-              placeholder="Timestamp"
+              placeholder="{{ 'transactions.table.columns.timestamp' | translate }}"
               formControlName="timestamp"
               required>
           </mat-form-field>
           <mat-form-field>
             <input
               matInput name="providerTimestamp"
-              placeholder="Provider timestamp"
+              placeholder="{{ 'transactions.table.columns.providerTimestamp' | translate }}"
               formControlName="providerTimestamp"
               required>
           </mat-form-field>
           <mat-form-field>
             <input
               matInput name="additionalData"
-              placeholder="Additional data"
+              placeholder="{{ 'transactions.table.columns.additionalData' | translate }}"
               formControlName="additionalData"
               required>
           </mat-form-field>
         </div>
         <div>
-          <button (click)="complete()" mat-raised-button type="submit" class="card-button" color="primary">Complete</button>
-          <button (click)="update()" mat-raised-button type="submit" class="card-button" color="primary">Update</button>
+          <button (click)="complete()" mat-raised-button type="submit" class="card-button" color="primary">
+            {{ 'transactions.actions.complete' | translate }}
+          </button>
+          <button (click)="update()" mat-raised-button type="submit" class="card-button" color="primary">
+            {{ 'transactions.actions.update' | translate }}
+          </button>
         </div>
       </form>
     </mat-card-content>

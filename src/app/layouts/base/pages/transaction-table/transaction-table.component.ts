@@ -19,8 +19,8 @@ export class TransactionTableComponent implements OnInit {
   transactionsTotalCount: number;
   dataSource: MatTableDataSource<Transaction>;
 
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: false}) sort: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
 
   constructor(private transactionService: TransactionService,
               private dialog: MatDialog) {

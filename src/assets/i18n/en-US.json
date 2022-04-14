@@ -55,8 +55,15 @@
         "currency": "Currency",
         "commissionAmount": "Commission amount",
         "commissionCurrency": "Commission currency",
-        "user": "User ID"
+        "user": "User ID",
+        "timestamp": "Timestamp",
+        "providerTimestamp": "Provider timestamp",
+        "additionalData": "Additional data"
       }
+    },
+    "actions": {
+      "update": "Update",
+      "complete": "Complete"
     }
   }
 }

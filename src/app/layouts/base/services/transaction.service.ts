@@ -8,7 +8,6 @@ import { Endpoints } from '../../../core/constants/endpoints';
 @Injectable()
 export class TransactionService extends BaseApiService {
 
-  // TODO: implement more api calls when continue implementing transaction layout
   constructor(protected httpClient: HttpClient) {
     super(httpClient);
   }
@@ -36,7 +35,7 @@ export class TransactionService extends BaseApiService {
       },
       user: transaction.user,
       additionalData: transaction.additionalData
-    }
+    };
 
     return super.put(Endpoints.TRANSACTION.BASE + '?trace=true', body);
   }
