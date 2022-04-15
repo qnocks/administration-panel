@@ -5,3 +5,8 @@
 .table {
   width: 100%;
 }
+
+.mat-row:hover {
+  background-color: #4AE8E3;
+  cursor: pointer;
+}

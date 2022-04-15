@@ -16,6 +16,11 @@ export abstract class BaseApiService {
       .pipe(catchError(this.handleError));
   }
 
+  put<T>(url: string, body?: any, params?: HttpParams, headers?: HttpHeaders): Observable<T> {
+    return this.httpClient.put<T>(url, body, { params, headers })
+      .pipe(catchError(this.handleError));
+  }
+
   handleError(error: unknown): Observable<never> {
     // TODO: Implement actual error handling after login component's logic is done
     console.log(error);
