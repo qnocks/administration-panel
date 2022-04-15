@@ -23,6 +23,7 @@
     "http": {
       "bad_request": "Sie sandten ungültige anforderung",
       "unauthorized": "Sitzung ist abgelaufen Melden Sie sich bitte neu",
+      "token_expired": "Sitzung wurde aktualisiert. Bitte aktualisieren Sie die Seite",
       "forbidden": "Sie haben keinen Zugriff auf diese Seite",
       "not_found": "Die gesuchte Seite kann nicht gefunden werden",
       "server_error": "Etwas schief gelaufen",

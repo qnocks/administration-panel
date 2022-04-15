@@ -24,7 +24,7 @@
       "token_expired": "Session has updated. Please refresh the page",
       "forbidden": "You don't have access to this page",
       "not_found": "The page you are looking for can't be found",
-      "server_error": "Something went wrounauthorizedng",
+      "server_error": "Something went wrong",
       "unknown": "Unknown error occurred"
     },
     "page": {
