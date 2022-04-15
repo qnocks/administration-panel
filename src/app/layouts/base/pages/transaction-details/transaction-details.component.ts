@@ -14,7 +14,7 @@ export class TransactionDetailsComponent implements OnInit {
   transaction: Transaction;
   transactionForm: FormGroup;
 
-  constructor(@Inject(MAT_DIALOG_DATA) private data: any,
+  constructor(@Inject(MAT_DIALOG_DATA) private data: { transaction: Transaction },
               private transactionService: TransactionService,
               private dialogRef: MatDialogRef<TransactionDetailsComponent>) {
     this.transaction = data.transaction;
