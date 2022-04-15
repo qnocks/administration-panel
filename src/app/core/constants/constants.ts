@@ -21,6 +21,7 @@ class I18n {
     },
   ];
   static readonly HELPER_KEY = 'dummy';
+    static readonly LOADER_URL_PATH = 'i18n';
 }
 
 class Transaction {

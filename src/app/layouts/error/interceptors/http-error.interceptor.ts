@@ -43,36 +43,39 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   }
 
   private handle(error: HttpErrorResponse): void {
-    this.notifierService.notify(Constants.NOTIFIER_KEY.ERROR, error.error.message);
-    // switch (error.status) {
-    //   case HttpStatusCode.BadRequest:
-    //     this.handleBadRequestStatus(error);
-    //     break;
-    //   case HttpStatusCode.Unauthorized:
-    //     this.handleUnauthorizedStatus();
-    //     break;
-    //   case HttpStatusCode.Forbidden:
-    //     this.redirectToErrorPage(error.status);
-    //     break;
-    //   case HttpStatusCode.NotFound:
-    //     this.redirectToErrorPage(error.status);
-    //     break;
-    //   case HttpStatusCode.InternalServerError:
-    //     this.handleInternalServerError();
-    //     break;
-    //   default:
-    //     this.handleUnknownError();
-    //     break;
-    // }
+    switch (error.status) {
+      case HttpStatusCode.BadRequest:
+        this.handleError(error);
+        break;
+      case HttpStatusCode.Unauthorized:
+        this.handleUnauthorized();
+        break;
+      case HttpStatusCode.Forbidden:
+        this.redirectToErrorPage(error.status);
+        break;
+      case HttpStatusCode.NotFound:
+        this.redirectToErrorPage(error.status);
+        break;
+      case HttpStatusCode.Conflict:
+        this.handleError(error);
+        break;
+      default:
+        this.handleUnknownError();
+        break;
+    }
   }
 
-  private handleBadRequestStatus(error: HttpErrorResponse): void {
+  private handleError(error: HttpErrorResponse): void {
     this.notifierService.notify(Constants.NOTIFIER_KEY.ERROR, error.error.message);
   }
 
-  private handleUnauthorizedStatus(): void {
+  private handleUnauthorized(): void {
     const refreshToken = this.tokenStorageService.getUser().refreshToken;
     this.authService.refreshToken({ refreshToken: refreshToken }).subscribe({
+      next: () => {
+        // TODO: i18n
+        this.notifierService.notify(Constants.NOTIFIER_KEY.SUCCESS, 'Session has updated. Please refresh the page');
+      },
       error: () => {
         this.authService.logout().subscribe({
           next: () => {
@@ -87,11 +90,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
   private redirectToErrorPage(statusCode: number): void {
     this.router.navigate([Constants.NOTIFIER_KEY.ERROR], { queryParams: { statusCode: statusCode } });
-  }
-
-  private handleInternalServerError(): void {
-    this.notifierService.notify(Constants.NOTIFIER_KEY.ERROR,
-      this.translateService.instant('error.http.server_error'));
   }
 
   private handleUnknownError(): void {

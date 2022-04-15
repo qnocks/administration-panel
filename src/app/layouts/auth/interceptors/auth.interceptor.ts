@@ -3,6 +3,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Observable } from 'rxjs';
 import { TokenStorageService } from '../services/token-storage.service';
 import { Endpoints } from '../../../core/constants/endpoints';
+import { Constants } from '../../../core/constants/constants';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -11,8 +12,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const isAuthRequest = request.url.includes(Endpoints.AUTH.BASE);
-    if (this.tokenStorage.isLoggedIn() && !isAuthRequest) {
+    if (this.tokenStorage.isLoggedIn() && this.isRequiresAuth(request)) {
       request = request.clone({
         setHeaders: {
           Authorization: `${this.tokenStorage.getUser().type} ${this.tokenStorage.getUser().accessToken}`,
@@ -21,5 +21,9 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     return next.handle(request);
+  }
+
+  isRequiresAuth(request: HttpRequest<unknown>): boolean {
+    return !(request.url.includes(Endpoints.AUTH.BASE) || request.url.includes(Constants.I18N.LOADER_URL_PATH));
   }
 }

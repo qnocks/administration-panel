@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { SpinnerModule } from './layouts/spinner/pages/spinner/spinner.module';
+import { SpinnerModule } from './shared/spinner/pages/spinner/spinner.module';
 import { NotificationModule } from './shared/notification/notification.module';
 import { AuthInterceptor } from './layouts/auth/interceptors/auth.interceptor';
 import { HttpErrorInterceptor } from './layouts/error/interceptors/http-error.interceptor';
