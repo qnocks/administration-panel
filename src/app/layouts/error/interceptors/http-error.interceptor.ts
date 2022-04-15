@@ -73,8 +73,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     const refreshToken = this.tokenStorageService.getUser().refreshToken;
     this.authService.refreshToken({ refreshToken: refreshToken }).subscribe({
       next: () => {
-        // TODO: i18n
-        this.notifierService.notify(Constants.NOTIFIER_KEY.SUCCESS, 'Session has updated. Please refresh the page');
+        this.notifierService.notify(Constants.NOTIFIER_KEY.INFO,
+          this.translateService.instant('error.http.token_expired'));
       },
       error: () => {
         this.authService.logout().subscribe({

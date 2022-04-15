@@ -5,6 +5,7 @@ class TokenStorage {
 
 class NotifierKey {
   static readonly SUCCESS = 'success';
+  static readonly INFO = 'info';
   static readonly ERROR = 'error';
 }
 
@@ -21,7 +22,7 @@ class I18n {
     },
   ];
   static readonly HELPER_KEY = 'dummy';
-    static readonly LOADER_URL_PATH = 'i18n';
+  static readonly LOADER_URL_PATH = 'i18n';
 }
 
 class Transaction {
