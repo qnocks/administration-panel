@@ -21,6 +21,7 @@
     "http": {
       "bad_request": "You've sent a bad request",
       "unauthorized": "Session has expired. Please login again",
+      "token_expired": "Session has updated. Please refresh the page",
       "forbidden": "You don't have access to this page",
       "not_found": "The page you are looking for can't be found",
       "server_error": "Something went wrong",

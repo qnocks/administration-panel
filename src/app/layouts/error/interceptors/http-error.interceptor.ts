@@ -45,10 +45,10 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   private handle(error: HttpErrorResponse): void {
     switch (error.status) {
       case HttpStatusCode.BadRequest:
-        this.handleBadRequestStatus(error);
+        this.handleError(error);
         break;
       case HttpStatusCode.Unauthorized:
-        this.handleUnauthorizedStatus();
+        this.handleUnauthorized();
         break;
       case HttpStatusCode.Forbidden:
         this.redirectToErrorPage(error.status);
@@ -56,8 +56,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
       case HttpStatusCode.NotFound:
         this.redirectToErrorPage(error.status);
         break;
-      case HttpStatusCode.InternalServerError:
-        this.handleInternalServerError();
+      case HttpStatusCode.Conflict:
+        this.handleError(error);
         break;
       default:
         this.handleUnknownError();
@@ -65,13 +65,17 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     }
   }
 
-  private handleBadRequestStatus(error: HttpErrorResponse): void {
+  private handleError(error: HttpErrorResponse): void {
     this.notifierService.notify(Constants.NOTIFIER_KEY.ERROR, error.error.message);
   }
 
-  private handleUnauthorizedStatus(): void {
+  private handleUnauthorized(): void {
     const refreshToken = this.tokenStorageService.getUser().refreshToken;
     this.authService.refreshToken({ refreshToken: refreshToken }).subscribe({
+      next: () => {
+        this.notifierService.notify(Constants.NOTIFIER_KEY.INFO,
+          this.translateService.instant('error.http.token_expired'));
+      },
       error: () => {
         this.authService.logout().subscribe({
           next: () => {
@@ -86,11 +90,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
   private redirectToErrorPage(statusCode: number): void {
     this.router.navigate([Constants.NOTIFIER_KEY.ERROR], { queryParams: { statusCode: statusCode } });
-  }
-
-  private handleInternalServerError(): void {
-    this.notifierService.notify(Constants.NOTIFIER_KEY.ERROR,
-      this.translateService.instant('error.http.server_error'));
   }
 
   private handleUnknownError(): void {

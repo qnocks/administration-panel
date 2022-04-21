@@ -15,7 +15,7 @@ export class ErrorPageComponent implements OnInit {
   statusCode: string;
   errorMessage: string;
   readonly redirectUrl: string = `/${Routing.HOME.BASE}`;
-  private readonly defaultErrorCode: string = HttpStatusCode.BadRequest.toString();
+  private readonly defaultErrorCode: string = HttpStatusCode.NotFound.toString();
 
   constructor(private translateService: TranslateService,
               private i18nHelper: I18nHelper,
@@ -30,6 +30,11 @@ export class ErrorPageComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: Params) => {
       this.statusCode = params[Routing.PARAMS.ERROR_CODE_PARAM];
+
+      if (this.statusCode === undefined) {
+        this.statusCode = this.defaultErrorCode;
+      }
+
       this.initiateErrorMessage();
     });
   }
